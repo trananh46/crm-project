@@ -13,7 +13,7 @@
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<a th:href="@{'/FPT/insert-classification-customer'}"
-						class="btn btn-info btn-fill btn-wd position">Thêm Phân Loại</a>
+						class="btn btn-info btn-fill btn-wd position" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Thêm Phân Loại</a>
 				</div>
 			</div>
 			<div class="row">
@@ -44,7 +44,7 @@
 										<td class="text-center"
 											th:text="${classificationCustomer.nameClassificationCustomer}"></td>
 										<td class="text-center">
-											<a th:href="@{'/FPT/update-classification-customer?id_classification_customer='+${classificationCustomer.idClassificationCustomer}}" class="btn btn-secondary">Sửa</a> 
+											<a th:href="@{'/FPT/update-classification-customer?id_classification_customer='+${classificationCustomer.idClassificationCustomer}}" class="btn btn-secondary" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Sửa</a> 
 											
 											
 											<!-- <a th:href="@{'/FPT/delete-classification-customer?id_classification_customer='+${classificationCustomer.idClassificationCustomer}}" class="btn btn-danger"

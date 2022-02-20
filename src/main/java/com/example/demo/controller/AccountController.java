@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,6 +37,7 @@ public class AccountController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/account_employee")
 	public String displayListAccount(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

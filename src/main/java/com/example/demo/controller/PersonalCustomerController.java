@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,6 +46,7 @@ public class PersonalCustomerController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/insert-personal-customer")
 	public String displayFormInsertPersonalCustomer(Model model) {
 
@@ -62,6 +64,7 @@ public class PersonalCustomerController {
 		return "user/formInsertPersonalCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@PostMapping("/insert-personal-customer-process")
 	public String insertPersonalCustomerProcess(@ModelAttribute CustomerDTO c, Model model) {
 		long a = personalCustomerService.insertPersonalCustomer(c);
@@ -85,6 +88,7 @@ public class PersonalCustomerController {
 		}
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-list-personal-customer")
 	public String displayListPersonalCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -101,6 +105,7 @@ public class PersonalCustomerController {
 		return "user/listPersonalCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-information-personal-customer")
 	public String displayInformationPersonalCustomer(@RequestParam("id_customer") Long idCustomer, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -117,6 +122,7 @@ public class PersonalCustomerController {
 		return "user/informationPersonalCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-personal-customer")
 	public String updatePersonalCustomer(@RequestParam("id_customer") Long idCustomer, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -141,6 +147,7 @@ public class PersonalCustomerController {
 		return "user/formUpdatePersonalCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-personal-customer-process")
 	public String updatePersonalCustomerProcess(@ModelAttribute CustomerDTO c, RedirectAttributes redirectAttributes,
 			Model model) {
@@ -176,6 +183,7 @@ public class PersonalCustomerController {
 		}
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@RequestMapping("/search-personal-customer-by-name")
 	public String searchPersonalCustomerByName(@RequestParam("search") String search, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -193,6 +201,7 @@ public class PersonalCustomerController {
 		return "user/listPersonalCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@RequestMapping("/advanced-search-personal-customer")
 	public String advancedSearchPersonalCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -219,6 +228,7 @@ public class PersonalCustomerController {
 
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@RequestMapping("/advanced-search-personal-customer-process")
 	public String advancedSearchPersonalCustomerProcess(@ModelAttribute Customer c, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -245,13 +255,14 @@ public class PersonalCustomerController {
 
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/lock-personal-customer")
 	public String lockPersonalCustomer(@RequestParam("id_customer") Long idCustomer) {
 		personalCustomerService.lockPersonalCustomer(idCustomer);
 		return "redirect:/FPT/advanced-search-personal-customer";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/open-personal-customer")
 	public String openPersonalCustomer(@RequestParam("id_customer") Long idCustomer,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,6 +42,7 @@ public class IndustryFieldController {
 	@Autowired
 	private CorporateCustomerService corporateCustomerService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-industry-field")
 	public String displayFormInsertIndustryField(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -55,6 +57,7 @@ public class IndustryFieldController {
 		return "user/formInsertIndustryField";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-industry-field-process")
 	public String insertFormIndustryFieldProcess(@ModelAttribute IndustryField i,Model model) {
 		long checkExist = industryFieldService.insertIndustryField(i);
@@ -77,6 +80,7 @@ public class IndustryFieldController {
 		
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-industry-field")
 	public String displayListIndustryField(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -93,7 +97,7 @@ public class IndustryFieldController {
 		return "user/listIndustryField";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-industry-field")
 	public String displayFormUpdateIndustryField(@RequestParam("id_industry_field") Long idIndustryField,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -110,7 +114,7 @@ public class IndustryFieldController {
 		return "user/formUpdateIndustryField";
 		
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-industry-field-process")
 	public String updateIndustryFieldProcess(@ModelAttribute IndustryField i,Model model) {
 		long checkExist = industryFieldService.updateIndustryField(i);
@@ -131,13 +135,14 @@ public class IndustryFieldController {
 		}
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-industry-field")
 	public String deleteIndustryField(@RequestParam("id_industry_field") Long idIndustryField) {
 		industryFieldService.deleteIndustryFieldById(idIndustryField);
 		return "redirect:/FPT/list-industry-field";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-corporate-customer-by-id-industry-field")
 	public String displayListCorporateCustomerByIdIndustryField(@RequestParam("id_industry_field") Long idIndustryField,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

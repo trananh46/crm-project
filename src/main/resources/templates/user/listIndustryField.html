@@ -13,7 +13,7 @@
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<a th:href="@{'/FPT/insert-industry-field'}"
-						class="btn btn-info btn-fill btn-wd position">Thêm Lĩnh Vực</a>
+						class="btn btn-info btn-fill btn-wd position" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Thêm Lĩnh Vực</a>
 				</div>
 			</div>
 			<div class="row">
@@ -41,10 +41,10 @@
 											th:text="${industryField.idIndustryField}"></td>
 										<td class="text-center"
 											th:text="${industryField.nameIndustryField}"></td>
-										<td class="text-center"><a th:href="@{'/FPT/list-corporate-customer-by-id-industry-field?id_industry_field='+${industryField.idIndustryField}}" class="btn btn-info">Xem</a>
+										<td class="text-center"><a th:href="@{'/FPT/list-corporate-customer-by-id-industry-field?id_industry_field='+${industryField.idIndustryField}}" class="btn btn-info">Xem Khách Hàng</a>
 											<a
 											th:href="@{'/FPT/update-industry-field?id_industry_field='+${industryField.idIndustryField}}"
-											class="btn btn-secondary">Sửa</a> 
+											class="btn btn-secondary" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Sửa</a> 
 											<!-- <a
 											th:href="@{'/FPT/delete-industry-field?id_industry_field='+${industryField.idIndustryField}}"
 											class="btn btn-danger"

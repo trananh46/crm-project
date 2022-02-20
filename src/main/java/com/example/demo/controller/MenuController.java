@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +30,7 @@ public class MenuController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-menu-parent")
 	public String displayListMenuParent(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -48,6 +50,7 @@ public class MenuController {
 		
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-menu-children-by-id-parent")
 	public String displayListMenuChildren(@RequestParam("id_menu_parent") Long idMenuParent,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -72,6 +75,7 @@ public class MenuController {
 		return "user/listMenuChildren";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-status-menu-parent-off-by-id")
 	public String updateStatusMenuParentOff(@RequestParam("id_menu") Long idMenu,Model model) {
 		
@@ -79,6 +83,7 @@ public class MenuController {
 		return "redirect:/FPT/list-menu-parent";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-status-menu-parent-on-by-id")
 	public String updateStatusMenuParentOn(@RequestParam("id_menu") Long idMenu,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -88,7 +93,7 @@ public class MenuController {
 		return "redirect:/FPT/list-menu-parent";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-status-menu-children-off-by-id")
 	public String updateStatusMenuChildrenOff(@RequestParam("id_menu") Long idMenu,@RequestParam("id_parent") Long idParent,RedirectAttributes redirectAttributes,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -99,7 +104,7 @@ public class MenuController {
 		return "redirect:/FPT/list-menu-children-by-id-parent";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-status-menu-children-on-by-id")
 	public String updateStatusMenuChildrenOn(@RequestParam("id_menu") Long idMenu,@RequestParam("id_parent") Long idParent,RedirectAttributes redirectAttributes) {
 		menuService.updateStatusMenuOn(idMenu);
@@ -107,6 +112,7 @@ public class MenuController {
 		return "redirect:/FPT/list-menu-children-by-id-parent";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-menu-parent")
 	public String displayFormInsertMenuParent(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -121,6 +127,7 @@ public class MenuController {
 		return "user/formInsertMenuParent";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-menu-parent-process")
 	public String insertMenuParentProcess(@ModelAttribute Menu m,Model model) {
 		
@@ -146,13 +153,14 @@ public class MenuController {
 
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete_menu_parent_by_id")
 	public String deleteMenuParent(@RequestParam("id_menu") Long idMenu) {
 		menuService.deleteMenuParentById(idMenu);
 		return "redirect:/FPT/list-menu-parent";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update_menu_parent")
 	public String displayFormUpdateMenu(@RequestParam("id_menu_parent") Long idMenu,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -169,6 +177,7 @@ public class MenuController {
 		return "user/formUpdateMenuParent";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update_menu_parent_process")
 	public String updateMenuProcess(@ModelAttribute Menu m,Model model) {
 		
@@ -183,7 +192,7 @@ public class MenuController {
 		}	
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-menu-children")
 	public String displayFormInsertMenuChildren(@RequestParam("id_menu") Long idMenu,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -201,7 +210,7 @@ public class MenuController {
 		return "user/formInsertMenuChildren";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-menu-children-process")
 	public String insertMenuChildrenProcess(@ModelAttribute Menu m,Model model,RedirectAttributes redirectAttributes) {
 		
@@ -221,7 +230,7 @@ public class MenuController {
 
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete_menu_children_by_id")
 	public String deleteMenuParent(@RequestParam("id_menu") Long idMenu,@RequestParam("id_parent") Long idParent,RedirectAttributes redirectAttributes) {
 		menuService.deleteMenuParentById(idMenu);
@@ -229,6 +238,7 @@ public class MenuController {
 		return "redirect:/FPT/list-menu-children-by-id-parent";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update_menu_children_by_id")
 	public String updateMenuChildren(@RequestParam("id_menu") Long idMenu,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -245,7 +255,7 @@ public class MenuController {
 		return "user/formUpdateMenuChildren";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update_menu_children_process")
 	public String updateMenuChildren(@ModelAttribute Menu m,Model model,RedirectAttributes redirectAttributes) {
 			

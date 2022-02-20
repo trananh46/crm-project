@@ -204,16 +204,16 @@
 										</a> <a
 											th:href="@{'/FPT/update-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}"
 											rel="tooltip" title="Sửa Thông Tin"
-											class="btn btn-success btn-simple btn-xs"> <i
+											class="btn btn-success btn-simple btn-xs" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')"> <i
 												class="ti-pencil-alt"></i>
 										</a> <a
 											th:href="@{'/FPT/update-logo-image?id_customer='+${corporateCustomer.idCustomer}}"
 											rel="tooltip" title="Sửa Logo"
-											class="btn btn-success btn-simple btn-xs"> <i
+											class="btn btn-success btn-simple btn-xs" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')"> <i
 												class="ti-pencil-alt"></i>
 										</a> <a th:href="@{'/FPT/lock-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}" rel="tooltip" title="Xóa"
 											class="btn btn-danger btn-simple btn-xs"
-											onclick="return alert('Không Hỗ Trợ Chức Năng Xóa Khách Hàng');">
+											onclick="return alert('Không Hỗ Trợ Chức Năng Xóa Khách Hàng');" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">
 												<i class="ti-close"></i>
 										</a></td>
 									</tr>

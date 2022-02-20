@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,7 @@ public class ClassificationCustomerController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-classifition-customer")
 	public String displayListClassificationCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -51,6 +53,7 @@ public class ClassificationCustomerController {
 		return "user/listClassificationCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-classification-customer")
 	public String displayFormInsertClassificationCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -65,6 +68,7 @@ public class ClassificationCustomerController {
 		return "user/formInsertClassificationCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-classification-customer-process")
 	public String insertClassificationCustomerProcess(@ModelAttribute ClassificationCustomer c,Model model) {
 		long checkExist = classificationCustomerService.insertClassificationCustomer(c);
@@ -85,6 +89,7 @@ public class ClassificationCustomerController {
 		}
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-classification-customer")
 	public String displayFormUpdateClassificationCustomer(@RequestParam("id_classification_customer") Long idClassificationCustomer,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -101,6 +106,7 @@ public class ClassificationCustomerController {
 		return "user/formUpdateClassificationCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-classification-customer-process")
 	public String updateClassificationCustomer(@ModelAttribute ClassificationCustomer c,Model model) {
 		long checkExist = classificationCustomerService.updateClassificationCustomer(c);
@@ -121,7 +127,7 @@ public class ClassificationCustomerController {
 		}
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-classification-customer")
 	public String deleteClassificationCustomer(@RequestParam("id_classification_customer") Long idClassificationCustomer) {
 		classificationCustomerService.deleteClassificationCustomer(idClassificationCustomer);

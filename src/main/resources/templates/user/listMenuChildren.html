@@ -15,10 +15,10 @@
 			<div class="col-md-8">
 			</div>
 			<div class="col-md-2">
-			<a th:href="@{'/FPT/delete_menu_parent_by_id?id_menu='+${idMenu}}" class="btn btn-danger btn-fill btn-wd" onclick="return confirmDeleteMenuParent()">Xóa Menu Chính</a>
+			<a th:href="@{'/FPT/delete_menu_parent_by_id?id_menu='+${idMenu}}" class="btn btn-danger btn-fill btn-wd" onclick="return confirmDeleteMenuParent()" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Xóa Menu Chính</a>
 			</div>
 			<div class="col-md-2">
-			<a th:href="@{'/FPT/insert-menu-children?id_menu='+${idMenu}}" class="btn btn-info btn-fill btn-wd position">Thêm Menu Phụ</a>
+			<a th:href="@{'/FPT/insert-menu-children?id_menu='+${idMenu}}" class="btn btn-info btn-fill btn-wd position" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Thêm Menu Phụ</a>
 			</div>
 		</div>
 			<div class="row">
@@ -57,10 +57,10 @@
 										<td class="text-center" th:if="${menuChildren.idStatus} == 0"><p class="status-menu-off">ĐANG TẮT</p></td>
 										
 										<td class="text-center">
-										<a th:href="@{'/FPT/delete_menu_children_by_id?id_menu='+${menuChildren.idMenu}+'&id_parent='+${menuChildren.idParent}}" class="btn btn-danger" onclick="return confirmDelete()">Xóa</a>
-										<a th:href="@{'/FPT/update_menu_children_by_id?id_menu='+${menuChildren.idMenu}}" class="btn btn-secondary">Sửa</a>
-										<a th:href="@{'/FPT/update-status-menu-children-off-by-id?id_menu='+${menuChildren.idMenu}+'&id_parent='+${menuChildren.idParent}}" class="btn btn-danger" th:if="${menuChildren.idStatus} == 1">Tắt</a>
-										<a th:href="@{'/FPT/update-status-menu-children-on-by-id?id_menu='+${menuChildren.idMenu}+'&id_parent='+${menuChildren.idParent}}" class="btn btn-success" th:if="${menuChildren.idStatus} == 0">Bật</a>
+										<a th:href="@{'/FPT/delete_menu_children_by_id?id_menu='+${menuChildren.idMenu}+'&id_parent='+${menuChildren.idParent}}" class="btn btn-danger" onclick="return confirmDelete()" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Xóa</a>
+										<a th:href="@{'/FPT/update_menu_children_by_id?id_menu='+${menuChildren.idMenu}}" class="btn btn-secondary" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Sửa</a>
+										<a th:href="@{'/FPT/update-status-menu-children-off-by-id?id_menu='+${menuChildren.idMenu}+'&id_parent='+${menuChildren.idParent}}" class="btn btn-danger" th:if="${menuChildren.idStatus} == 1" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Tắt</a>
+										<a th:href="@{'/FPT/update-status-menu-children-on-by-id?id_menu='+${menuChildren.idMenu}+'&id_parent='+${menuChildren.idParent}}" class="btn btn-success" th:if="${menuChildren.idStatus} == 0" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Bật</a>
 										</td>
 									</tr>	
 								</tbody>

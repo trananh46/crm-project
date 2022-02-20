@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +49,8 @@ public class CorporateCustomerController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/insert-corporate-customer")
 	public String displayFormInsertCorporateCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -72,6 +75,7 @@ public class CorporateCustomerController {
 		return "user/formInsertCorporateCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@PostMapping("/insert-corporate-customer-process")
 	public String insertCorporateCustomerProcess(@ModelAttribute CustomerDTO c, Model model) throws IOException {
 		long checkExist = corporateCustomerService.insertCorporateCustomer(c);
@@ -93,6 +97,7 @@ public class CorporateCustomerController {
 		}
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-corporate-customer")
 	public String displayListCorporateCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -109,6 +114,7 @@ public class CorporateCustomerController {
 		return "user/listCorporateCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/search-corporate-customer-by-name")
 	public String searchCorporateCustomer(@RequestParam("search") String search, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -125,6 +131,7 @@ public class CorporateCustomerController {
 		return "user/listCorporateCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-information-corporate-customer")
 	public String displayCorporateCustomer(@RequestParam("id_customer") Long idCustomer, Model model) {
 		Customer c = corporateCustomerService.findCorporateCustomerById(idCustomer);
@@ -164,7 +171,7 @@ public class CorporateCustomerController {
 			return "user/informationCorporateCustomer";
 		}
 	}
-
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-corporate-customer")
 	public String updateCorporateCustomer(@RequestParam("id_customer") Long idCustomer, Model model) {
 		Customer c = corporateCustomerService.findCorporateCustomerById(idCustomer);
@@ -239,6 +246,7 @@ public class CorporateCustomerController {
 
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-corporate-customer-process")
 	public String updateCorporateCustomerProcess(@ModelAttribute CustomerDTO c, RedirectAttributes redirectAttributes,
 			Model model) {
@@ -264,6 +272,7 @@ public class CorporateCustomerController {
 
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-logo-image")
 	public String updateLogoImage(@RequestParam("id_customer") Long idCustomer, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -279,6 +288,7 @@ public class CorporateCustomerController {
 		return "user/formUpdateLogoImage";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-logo-image-process")
 	public String updateLogoImageProcess(@ModelAttribute CustomerDTO c, RedirectAttributes redirectAttributes)
 			throws IOException {
@@ -287,6 +297,7 @@ public class CorporateCustomerController {
 		return "redirect:/FPT/display-information-corporate-customer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/advanced-search-corporate-customer")
 	public String advancedSearchCorporateCustomer(Model model) {
 		
@@ -306,10 +317,10 @@ public class CorporateCustomerController {
 		model.addAttribute("listIndustryField", listIndustryField);
 
 		return "user/advancedSearchCorporateCustomer";
-
-
+	
 	}
-
+	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/advanced-search-corporate-customer-by-enterprise-indentification-number")
 	public String advancedSearchCorporateCustomerByEnterpriseIdentificationNumber(@ModelAttribute CustomerDTO c,
 			Model model) {
@@ -332,6 +343,7 @@ public class CorporateCustomerController {
 		return "user/advancedSearchCorporateCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/advanced-search-corporate-customer-by-company-scale")
 	public String advancedSearchCorporateCustomerByCompanyScale(@RequestParam("id_company_scale") Long idCompanyScale,
 			Model model) {
@@ -355,6 +367,7 @@ public class CorporateCustomerController {
 		return "user/advancedSearchCorporateCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/advanced-search-corporate-customer-by-industry-field")
 	public String advancedSearchCorporateCustomerByIndustryField(
 			@RequestParam("id_industry_field") Long idIndustryField, Model model) {
@@ -378,6 +391,7 @@ public class CorporateCustomerController {
 		return "user/advancedSearchCorporateCustomer";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/advanced-search-corporate-customer-by-customer-status")
 	public String advancedSearchCorporateCustomerByCustomerStatus(
 			@RequestParam("id_customer_status") Long idCustomerStatus, Model model) {
@@ -402,6 +416,7 @@ public class CorporateCustomerController {
 	}
 
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/lock-corporate-customer")
 	public String lockCorporateCustomer(@RequestParam("id_customer") Long idCustomer, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -417,6 +432,7 @@ public class CorporateCustomerController {
 		return "redirect:/FPT/advanced-search-corporate-customer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/open-corporate-customer")
 	public String openCorporateCustomer(@RequestParam("id_customer") Long idCustomer, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

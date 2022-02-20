@@ -7,13 +7,13 @@
 <link href="../assets/css/menu.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="content" layout:fragment="content">
+	<div class="content" layout:fragment="content" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG','ROLE_STF')">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<a th:href="@{'/FPT/insert-menu-parent'}"
-						class="btn btn-info btn-fill btn-wd position">Thêm Menu Chính</a>
+						class="btn btn-info btn-fill btn-wd position" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Thêm Menu Chính</a>
 				</div>
 			</div>
 			<div class="row">
@@ -54,12 +54,12 @@
 											th:href="@{'/FPT/list-menu-children-by-id-parent?id_menu_parent='+${menuParent.idMenu}}"
 											class="btn btn-info">Xem</a> <a
 											th:href="@{'/FPT/update_menu_parent?id_menu_parent='+${menuParent.idMenu}}"
-											class="btn btn-secondary">Sửa</a> <a
+											class="btn btn-secondary" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Sửa</a> <a
 											th:href="@{'/FPT/update-status-menu-parent-off-by-id?id_menu='+${menuParent.idMenu}}"
-											class="btn btn-danger" th:if="${menuParent.idStatus} == 1">Tắt</a>
+											class="btn btn-danger" th:if="${menuParent.idStatus} == 1" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Tắt</a>
 											<a
 											th:href="@{'/FPT/update-status-menu-parent-on-by-id?id_menu='+${menuParent.idMenu}}"
-											class="btn btn-success" th:if="${menuParent.idStatus} == 0">Bật</a>
+											class="btn btn-success" th:if="${menuParent.idStatus} == 0" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Bật</a>
 										</td>
 									</tr>
 								</tbody>
