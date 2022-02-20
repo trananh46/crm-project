@@ -288,7 +288,7 @@ public class CorporateCustomerController {
 	}
 
 	@GetMapping("/advanced-search-corporate-customer")
-	public ResponseEntity<Object> advancedSearchCorporateCustomer(Model model) {
+	public String advancedSearchCorporateCustomer(Model model) {
 		
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
@@ -305,8 +305,8 @@ public class CorporateCustomerController {
 		List<IndustryField> listIndustryField = industryFieldService.displayListIndustryField();
 		model.addAttribute("listIndustryField", listIndustryField);
 
-//		return "user/advancedSearchCorporateCustomer";
-		return new ResponseEntity<Object>(listCorporateCustomer,HttpStatus.OK);
+		return "user/advancedSearchCorporateCustomer";
+
 
 	}
 
