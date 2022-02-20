@@ -55,11 +55,11 @@ public class UserController {
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u);
 		
 		List<Department> listDepartment = departmentService.displayDepartment();
 		model.addAttribute("listDepartment", listDepartment);
@@ -104,11 +104,11 @@ public class UserController {
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u);
 		
 		List<UserAndInformation> listUser = userService.displayListUser();
 		model.addAttribute("listUser", listUser);	
@@ -122,11 +122,11 @@ public class UserController {
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u1 = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u1);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u1 = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u1);
 		
 		User u = userService.findUserById(idUser);	
 		model.addAttribute("user", u);

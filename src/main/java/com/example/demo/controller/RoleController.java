@@ -40,11 +40,11 @@ public class RoleController {
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u);
 		
 		List<Role> listRole = roleService.displayListRole();
 		model.addAttribute("listRole", listRole);
@@ -56,11 +56,11 @@ public class RoleController {
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u);
 		
 		return "user/formInsertRole";
 	}
@@ -76,11 +76,11 @@ public class RoleController {
 			List<Menu> listMenu = menuService.displayListMenu();
 			model.addAttribute("listMenu", listMenu);
 			
-//			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//			String email = userDetails.getUsername();
-//			User u = userService.displayInformationOfUserByEmailAccount(email);
-//			model.addAttribute("user", u);
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String email = userDetails.getUsername();
+			User u = userService.displayInformationOfUserByEmailAccount(email);
+			model.addAttribute("user", u);
 			
 			model.addAttribute("role", r);
 			model.addAttribute("checkExist", checkExist);

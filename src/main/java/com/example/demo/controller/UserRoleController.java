@@ -47,11 +47,11 @@ public class UserRoleController {
 		List<Menu> listMenu = menuService.displayListMenu();
 		model.addAttribute("listMenu", listMenu);
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u);
 		
 		User u1 = userService.findUserById(idUser);
 		model.addAttribute("user", u1);

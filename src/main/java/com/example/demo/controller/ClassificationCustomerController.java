@@ -37,14 +37,14 @@ public class ClassificationCustomerController {
 	
 	@GetMapping("/list-classifition-customer")
 	public String displayListClassificationCustomer(Model model) {
-//		List<Menu> listMenu = menuService.displayListMenu();
-//		model.addAttribute("listMenu", listMenu);
-//		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//		String email = userDetails.getUsername();
-//		User u = userService.displayInformationOfUserByEmailAccount(email);
-//		model.addAttribute("user", u);
+		List<Menu> listMenu = menuService.displayListMenu();
+		model.addAttribute("listMenu", listMenu);
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String email = userDetails.getUsername();
+		User u = userService.displayInformationOfUserByEmailAccount(email);
+		model.addAttribute("user", u);
 		
 		List<ClassificationCustomer> listClassificationCustomer = classificationCustomerService.displayClassificationCustomer();
 		model.addAttribute("listClassificationCustomer", listClassificationCustomer);
