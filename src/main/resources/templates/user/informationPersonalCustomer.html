@@ -59,17 +59,17 @@
 								<div class="form-group">
 									<label> Giới Tính</label>
 									<div class="row">
-										<div class="col-md-4">
-											<div class="radio" th:if="${personalCustomer.gender} == 1">
+										<div class="col-md-4" th:if="${personalCustomer.gender} == 1">
+											
 												<input type="radio" name="gender" checked="checked">
 												<label for="radio1" name="gender"> Nam </label>
-											</div>
+											
 										</div>
 										<div class="col-md-4" th:if="${personalCustomer.gender} == 0">
-											<div class="radio">
+											
 												<input type="radio" name="gender" checked="checked">
 												<label for="radio1" name="gender"> Nữ </label>
-											</div>
+										
 										</div>
 										<div class="col-md-4"></div>
 										<div class="col-md-4"></div>

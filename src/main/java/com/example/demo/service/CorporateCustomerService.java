@@ -65,6 +65,9 @@ public class CorporateCustomerService {
 			c2.setIdCustomerStatus(c.getIdCustomerStatus());
 			c2.setCompanyScale(c.getCompanyScale());
 			c2.setLogoImage(logoImage);
+			//opened status is 1
+			Long status = (long)1;
+			c2.setStatus(status);
 			corporateCustomerRepository.save(c2);
 			return 0;
 		}else {
