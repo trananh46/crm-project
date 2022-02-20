@@ -49,6 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/FPT/list_department").permitAll()
                 .antMatchers("/FPT/insert_department").permitAll()
                 .antMatchers("/FPT/insert_department_process").permitAll()
+                .antMatchers("/FPT/role").permitAll()
+                .antMatchers("/FPT/insert-role").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
