@@ -77,7 +77,7 @@ public class CorporateCustomerController {
 		long checkExist = corporateCustomerService.insertCorporateCustomer(c);
 
 		if (checkExist == 0) {
-			return "redirect:/FPT/list-corporate-customer";
+			return "redirect:/FPT/advanced-search-corporate-customer";
 		} else {
 			List<Menu> listMenu = menuService.displayListMenu();
 			model.addAttribute("listMenu", listMenu);
