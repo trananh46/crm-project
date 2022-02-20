@@ -3,6 +3,6 @@ spring:
   jpa:
     show-sql: true
     hibernate.ddl-auto: update
-spring.datasource.url: jdbc:postgresql://localhost:5432/crm-project
-spring.datasource.username: postgres
-spring.datasource.password: admin
+spring.datasource.url: jdbc:postgresql://ec2-23-20-73-25.compute-1.amazonaws.com:5432/d872siffink4cb
+spring.datasource.username: jbcrwzvpgjcljd
+spring.datasource.password: a0a11f02a23befe518f5930947a9c0ddb626c49926811a67e55b1dd0be59ca76
