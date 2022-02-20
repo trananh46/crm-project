@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<style type="text/css">
+	.logo-image-customer{
+		width: 120px;
+		height: 10px;
+		border: 1px solid #ECCBB0;
+	}
+</style>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+
+		<div class="container-fluid">
+
+
+			<div class="row">
+				<br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh Sách Khách Hàng Doanh Nghiệp-Tổ Chức</h4>
+						</div>
+						<div class="card-content">
+
+							<form class="navbar-form navbar-left navbar-search-form"
+								role="search"
+								th:action="@{'/FPT/search-corporate-customer-by-name'}"
+								method="get">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-search"></i></span>
+									<input type="text" class="form-control"
+										placeholder="Tìm Kiếm Theo Tên" name="search">
+								</div>
+							</form>
+
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Doanh Nghiệp</th>
+									<th data-field="name" class="text-center">Địa Chỉ</th>
+									<th data-field="name" class="text-center">Mã Số Doanh
+										Nghiệp</th>
+									<th data-field="name" class="text-center">SĐT</th>
+									<th data-field="name" class="text-center">Logo</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="corporateCustomer : ${listCorporateCustomer}">
+									<tr>
+										<td class="text-center"
+											th:text="${corporateCustomer.idCustomer}"></td>
+										<td class="text-center"
+											th:text="${corporateCustomer.nameCustomer}"></td>
+										<td class="text-center" th:text="${corporateCustomer.address}"></td>
+										<td class="text-center"
+											th:text="${corporateCustomer.enterpriseIdentificationNumber}"></td>
+										<td class="text-center"
+											th:text="${corporateCustomer.phoneNumber}"></td>
+										<td class="text-center"><img th:src="@{${corporateCustomer.logoImage}}" class="logo-image-customer"></td>
+										
+										
+										<td class="text-center">
+										
+										<a
+											th:href="@{'/FPT/display-information-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}"
+											rel="tooltip" title="Thông Tin Khách Hàng"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-user"></i>
+										</a>
+										
+										 <a
+											th:href="@{'/FPT/open-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}"
+											rel="tooltip" title="Khôi Phục"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-reload"></i>
+										</a> 
+										
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

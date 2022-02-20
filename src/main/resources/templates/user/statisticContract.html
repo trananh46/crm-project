@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/classification-customer.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Hợp Đồng</h4>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table">
+								<thead>
+									<tr>
+
+										<th class="text-center"></th>
+										<th class="text-center"></th>
+										<th class="text-center">Số Lượng</th>
+										<th class="text-center">Chức Năng</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+
+										<td class="text-center"></td>
+										<td class="text-center"><h4>Tổng Số Hợp Đồng</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalContract.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/statistic-all-contract'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4> Hợp Đồng Ngắn Hạn</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalContractShortTermTime.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/statistic-all-contract-short-term-time'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4> Hợp Đồng Dài Hạn</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalContractLongTermTime.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/statistic-all-contract-long-term-time'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4> Hợp Đồng Đã Xóa</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalContractLocked.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/statistic-all-contract-locked'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

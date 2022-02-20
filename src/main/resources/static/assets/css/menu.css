@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.status-menu-on{
+	background-color: #64DA78;
+	border-radius: 20px;
+}
+.status-menu-off{
+	background-color: #F65454;
+	border-radius: 20px;
+}

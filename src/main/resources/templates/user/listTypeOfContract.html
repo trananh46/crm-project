@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/contract.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a th:href="@{'/FPT/form-insert-type-of-contract'}"
+						class="btn btn-info btn-fill btn-wd position">Thêm Loại Hợp
+						Đồng</a>
+				</div>
+			</div>
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Loại Hợp Đồng</h4>
+						</div>
+						<div class="card-content">
+
+							<div class="toolbar"></div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Loại Hợp
+										Đồng</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="typeOfContract : ${listTypeOfContract}">
+									<tr>
+										<td class="text-center"
+											th:text="${typeOfContract.idTypeOfContract}"></td>
+										<td class="text-center"
+											th:text="${typeOfContract.nameTypeOfContract}"></td>
+										<td class="text-center"><a th:href="@{'/FPT/list-contract-by-id-type-of-contract?id_type_of_contract='+${typeOfContract.idTypeOfContract}}" class="btn btn-info">Xem</a>
+											<a
+											th:href="@{'/FPT/update-type-of-contract?id_type_of_contract='+${typeOfContract.idTypeOfContract}}"
+											class="btn btn-secondary">Sửa</a> 
+											
+											<!-- <a
+											th:href="@{'/FPT/delete-type-of-contract?id_type_of_contract='+${typeOfContract.idTypeOfContract}}"
+											class="btn btn-danger"
+											onclick="return confirm('Bạn Muốn Xóa Loại Hợp Đồng Này - Các Hợp Đồng Liên Quan Sẽ Không Bị Xóa');">Xóa</a> -->
+											
+											</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

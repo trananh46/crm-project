@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/classification-customer.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<form method="get"
+							th:action="@{'/FPT/update-classification-customer-process'}">
+							<div class="card-header">
+								<h4 class="card-title">Cập Nhật Phân Loại Khách Hàng</h4>
+							</div>
+							<div class="card-content">
+								<input type="hidden"
+									th:value="${classificationCustomer.idClassificationCustomer}"
+									name="idClassificationCustomer">
+								<div class="form-group">
+									<label>Tên Phân Loại</label> <input type="text"
+										placeholder=" Tên phòng ban" class="form-control"
+										name="nameClassificationCustomer"
+										id="name-classification-customer"
+										th:value="${classificationCustomer.nameClassificationCustomer}">
+								</div>
+								<div class="alert alert-danger" th:if="${checkExist == 1}">
+									<span><b>Tên Loại Hợp Đồng Đã Tồn Tại !</b></span>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="row">
+									<div class="col-md-4"></div>
+									<div class="col-md-4">
+										<button type="submit"
+											class="btn btn-fill btn-info position-button-insert-department-form"
+											onclick="return update()">Xác Nhận</button>
+									</div>
+									<div class="col-md-4"></div>
+								</div>
+
+
+							</div>
+						</form>
+					</div>
+					<!-- end card -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

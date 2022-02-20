@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<link href="../assets/css/department.css" rel="stylesheet" />
+<script src="../assets/js/department.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<form method="get" th:action="@{'/FPT/insert_department_process'}">
+							<div class="card-header">
+								<h4 class="card-title">Thêm Phòng Ban</h4>
+							</div>
+							<div class="card-content">
+								<div class="form-group">
+									<label>Nhập Tên Phòng Ban</label> <input type="text"
+										placeholder=" Tên phòng ban" class="form-control"
+										name="name_department" id="name-department">
+								</div>
+								 <div class="alert alert-danger" th:if="${checkExist == 1}">
+									<span><b>Phòng Ban Đã Tồn Tại !</b></span>
+								</div> 
+								 <div class="alert alert-danger" style="display: none;" id="error">
+									<span><b>Không Được Để Trống !</b></span>
+								</div> 
+								
+								<button type="submit"
+									class="btn btn-fill btn-info position-button-insert-department-form" onclick="return insert()">Xác
+									Nhận</button>
+							</div>
+						</form>
+					</div>
+					<!-- end card -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/classification-customer.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Nhân Viên</h4>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="text-center"></th>
+										<th class="text-center"></th>
+										<th class="text-center">Số Lượng</th>
+										<th class="text-center">Chức Năng</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4>Tổng Số Nhân Viên</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalEmployee.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/all-employee'}" class="btn btn-info">Chi
+													Tiết</a>
+											</h4>
+										</td>
+									</tr>
+
+
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4>Nhân Viên Chưa Có Tài
+												Khoản</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalEmployeeHasNotHadAccount.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/all-employee-has-not-had-account'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+
+
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4>Nhân Viên Đã Có Tài
+												Khoản</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalEmployeeHasAccount.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/all-employee-has-account'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="text-center"></td>
+										<td class="text-center"><h4>Nhân Viên Đã Bị Xóa</h4></td>
+										<td class="text-center"><h4
+												th:text="${totalEmployeeLocked.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a th:href="@{'/FPT/all-employee-locked'}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Nhân Viên Theo Phòng Ban</h4>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table">
+								<thead>
+									<tr>
+										
+										<th class="text-center"></th>
+										<th class="text-center"></th>
+										<th class="text-center">Số Lượng</th>
+										<th class="text-center">Chức Năng</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr
+										th:each="totalEmployeeByDepartment:${totalEmployeeByDepartment}">
+									
+										<td class="text-center"></td>
+										<td class="text-center"><h4
+												th:text="${totalEmployeeByDepartment.getTen_phong_ban()}"></h4></td>
+										<td class="text-center"><h4
+												th:text="${totalEmployeeByDepartment.getSoluong()}"></h4></td>
+										<td class="text-center">
+											<h4>
+												<a
+													th:href="@{'/FPT/all-employee-by-department?name_department='+${totalEmployeeByDepartment.getTen_phong_ban()}}"
+													class="btn btn-info">Chi Tiết</a>
+											</h4>
+										</td>
+									</tr>
+
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

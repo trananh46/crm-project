@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+
+<script src="../assets/js/corporate-customer.js"></script>
+
+<style type="text/css">
+.logo-image-customer {
+	width: 300px;
+	height: 10px;
+	border: 1px solid #ECCBB0;
+}
+</style>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Thông Tin Khách Hàng Doanh Nghiệp-Tổ
+								Chức</h4>
+						</div>
+						<div class="card-content">
+							<div class="form-group">
+								<div class="alert alert-danger"
+									th:if="${corporateCustomer.status} == 0">
+									<span><b>Khách Hàng Đã Bị Xóa !</b></span>
+								</div>
+
+							</div>
+							<div class="form-group">
+								<label>Tên Doanh Nghiệp</label> <input type="text"
+									placeholder=" Nhập Họ Tên " class="form-control"
+									th:value="${corporateCustomer.nameCustomer}"
+									readonly="readonly">
+							</div>
+
+							<div class="form-group">
+								<label>Địa Chỉ</label>
+								<textarea rows="5" cols="10" class="form-control"
+									placeholder=" Nhập Địa Chỉ"
+									th:text="${corporateCustomer.address}" readonly="readonly"></textarea>
+							</div>
+
+							<div class="form-group">
+								<label>Email</label> <input type="text"
+									placeholder=" Nhập Email" class="form-control"
+									th:value="${corporateCustomer.email}" readonly="readonly">
+							</div>
+
+							<div class="form-group">
+								<label> Mã Số Thuế</label> <input type="number"
+									placeholder=" Nhập Mã Số Thuế" class="form-control"
+									th:value="${corporateCustomer.taxIdentificationNumber}"
+									readonly="readonly">
+
+							</div>
+
+							<div class="form-group">
+								<label> Địa Chỉ Website</label> <input type="text"
+									placeholder="Địa Chỉ Website Của Công Ty" class="form-control"
+									th:value="${corporateCustomer.websiteAddress}"
+									readonly="readonly">
+							</div>
+
+
+							<div class="form-group">
+								<label>Hợp Đồng Công Ty</label> 
+								<br>	
+								<a th:href="@{'/FPT/list-contract-by-id-customer?id_customer='+${corporateCustomer.idCustomer}}" class="btn btn-info">Danh Sách Hợp Đồng</a>
+							</div>
+							<div class="form-group">
+								<label> Người Đại Diện</label> <input type="text"
+									placeholder="Tên Người Đại Diện Công Ty" class="form-control"
+									th:value="${corporateCustomer.representative}"
+									readonly="readonly">
+							</div>
+							<div class="form-group">
+								<label> Công Ty Mẹ</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<input type="text" class="form-control"
+											th:value="${nameParentCompany}" readonly="readonly"
+											th:if="${nameParentCompany} != null">
+
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label> Mã Số Doanh Nghiệp</label> <input type="number"
+									placeholder="Nhập Mã Doanh Nghiệp" class="form-control"
+									th:value="${corporateCustomer.enterpriseIdentificationNumber}"
+									readonly="readonly">
+							</div>
+
+
+
+							<div class="form-group">
+								<label> Loại Khách Hàng</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<input type="text" class="form-control"
+											value="Khách Hàng Doanh Nghiệp" readonly="readonly">
+
+
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label> Lĩnh Vực Công Ty</label>
+								<div class="row">
+									<div class="col-sm-12">
+
+										<input type="text" class="form-control"
+											th:value="${nameIdustryField}" readonly="readonly">
+
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="form-group">
+								<label> Ngày Đăng Ký</label> <input type="date"
+									placeholder="Nhập Ngày Sinh" class="form-control"
+									th:value="${corporateCustomer.registrationDate}"
+									readonly="readonly">
+							</div>
+
+
+							<div class="form-group">
+								<label> SĐT</label> <input type="number" placeholder="Nhập Sđt"
+									class="form-control"
+									th:value="${corporateCustomer.phoneNumber}" readonly="readonly">
+							</div>
+
+
+							<div class="form-group">
+								<label> Trạng Thái Khách Hàng</label>
+								<div class="row">
+									<div class="col-sm-12">
+
+										<input type="text" class="form-control" value="Đã Hoạt Động"
+											readonly="readonly"
+											th:if="${corporateCustomer.idCustomerStatus} == 1"> <input
+											type="text" class="form-control" value="Chưa Hoạt Động"
+											readonly="readonly"
+											th:if="${corporateCustomer.idCustomerStatus} == 0">
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="form-group">
+								<label> Quy Mô Công Ty</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<input type="text" class="form-control" value="Nhỏ"
+											readonly="readonly"
+											th:if="${corporateCustomer.companyScale} == 1"> <input
+											type="text" class="form-control" value="Vừa"
+											readonly="readonly"
+											th:if="${corporateCustomer.companyScale} == 2"> <input
+											type="text" class="form-control" value="Lớn"
+											readonly="readonly"
+											th:if="${corporateCustomer.companyScale} == 3">
+
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="form-group">
+								<label> Ảnh-Logo</label>
+								<div class="row">
+									<div class="col-md-2"></div>
+									<div class="col-md-10">
+										<img th:src="@{${corporateCustomer.logoImage}}"
+											class="logo-image-customer">
+									</div>
+									<div class="col-md-2"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end card -->
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

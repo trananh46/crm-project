@@ -1,0 +1,12 @@
+@charset "ISO-8859-1";
+.position{
+	margin-left: 900px;
+}
+.position-button-insert-department-form{
+	margin-left: 180px;
+}
+
+.error-department{
+	background: white;
+}
+

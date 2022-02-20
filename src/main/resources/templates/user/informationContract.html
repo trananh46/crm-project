@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/contract.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="card">
+
+						<div class="card-header">
+							<h4 class="card-title">Thông Tin Hợp Đồng</h4>
+						</div>
+						<div class="card-content">
+							<div class="form-group">
+								<div class="alert alert-danger"
+									th:if="${contract.getTrang_thai()} == 0">
+									<span><b>Hợp Đồng Đã Bị Xóa !</b></span>
+								</div>
+
+							</div>
+							<div class="form-group">
+								<label>Tên Hợp Đồng</label> <input type="text"
+									placeholder=" Nhập Tên Hợp Đồng " class="form-control"
+									th:value="${contract.getTen_hop_dong()}" readonly="readonly">
+							</div>
+
+
+
+							<div class="form-group">
+								<label>Số Hợp Đồng</label> <input type="number"
+									placeholder=" Nhập Số Hợp Đồng" class="form-control"
+									th:value="${contract.getSo_hop_dong()}" readonly="readonly">
+							</div>
+
+
+							<div class="form-group">
+								<label>Người Ký Hợp Đồng</label> <input type="text"
+									placeholder=" Nhập Tên Người Ký" class="form-control"
+									th:value="${contract.getNguoi_ky_hop_dong()}"
+									readonly="readonly">
+							</div>
+
+
+
+
+							<div class="form-group">
+								<label>Khách Hàng</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<!-- <input type="text" class="form-control"
+											th:value="${contract.getTen_khach_hang()}"
+											readonly="readonly"> -->
+
+							<a th:href="@{'/FPT/display-information-corporate-customer?id_customer='+${contract.getId_khach_hang()}}" class="form-control" th:text="${contract.getTen_khach_hang()}"></a> 
+
+
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label>Loại Hợp Đồng</label>
+								<div class="row">
+									<div class="col-sm-12">
+
+										<input type="text" class="form-control"
+											th:value="${contract.getTen_loai_hop_dong()}"
+											readonly="readonly">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label> Ngày Ký Hợp Đồng</label> <input type="date"
+									placeholder="Nhập Ngày Ký Hợp Đồng" class="form-control"
+									th:value="${contract.getNgay_ky()}" readonly="readonly">
+							</div>
+
+
+							<div class="form-group">
+								<label> Ngày Hết Hạn Hợp Đồng</label> <input type="date"
+									placeholder="Nhập Ngày Hết Hạn Hợp Đồng" class="form-control"
+									th:value="${contract.getNgay_het_han()}" readonly="readonly">
+							</div>
+
+
+							<div class="form-group">
+								<label> File Đính Kèm</label> <input type="text"
+									class="form-control" th:value="${contract.getFile_dinh_kem()}"
+									readonly="readonly">
+							</div>
+
+						</div>
+
+					</div>
+					<!-- end card -->
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

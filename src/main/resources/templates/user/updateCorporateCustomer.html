@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+
+<script src="../assets/js/corporate-customer.js"></script>
+<style type="text/css">
+.logo-image-customer {
+	width: 300px;
+	height: 10px;
+	border: 1px solid #ECCBB0;
+}
+</style>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="card">
+						<form method="post"
+							th:action="@{'/FPT/update-corporate-customer-process'}">
+							<div class="card-header">
+								<h4 class="card-title">Cập Nhật Khách Hàng Doanh Nghiệp-Tổ Chức</h4>
+							</div>
+							<div class="card-content">
+								<div class="alert alert-danger" th:if="${checkExist == 1}">
+									<span><b> Tên Khách Hàng Và Mã Doanh Nghiệp Đã Tồn
+											Tại !</b></span>
+								</div>
+								
+								<input type="hidden" name="idCustomer" th:value="${corporateCustomer.idCustomer}">
+								<div class="form-group">
+									<label>Tên Doanh Nghiệp</label> <input type="text"
+										placeholder=" Nhập Họ Tên " class="form-control"
+										name="nameCustomer" id="name-customer"
+										th:value="${corporateCustomer.nameCustomer}">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-name-customer">
+									<span><b>Không Được Để Trống Tên Doanh Nghiệp !</b></span>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-regex-name-customer">
+									<span><b>Không Đúng Định Dạng - Vui Lòng Nhập Lại !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label>Địa Chỉ</label>
+									<textarea rows="5" cols="10" class="form-control"
+										placeholder=" Nhập Địa Chỉ" name="address" id="address"
+										th:text="${corporateCustomer.address}"></textarea>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-address">
+									<span><b>Không Được Để Trống Địa Chỉ !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label>Email</label> <input type="text"
+										placeholder=" Nhập Email" class="form-control" name="email"
+										id="email" th:value="${corporateCustomer.email}">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-email">
+									<span><b>Không Được Để Trống Email !</b></span>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-regex-email">
+									<span><b>Email Không Hợp Lệ !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label> Mã Số Thuế</label> <input type="number"
+										placeholder=" Nhập Mã Số Thuế" class="form-control"
+										name="taxIdentificationNumber" id="taxIdentificationNumber"
+										th:value="${corporateCustomer.taxIdentificationNumber}">
+
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-taxIdentificationNumber">
+									<span><b>Không Được Để Trống Mã Số Thuế !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label> Địa Chỉ Website</label> <input type="text"
+										placeholder="Địa Chỉ Website Của Công Ty" class="form-control"
+										name="websiteAddress"
+										th:value="${corporateCustomer.websiteAddress}">
+								</div>
+
+								<div class="form-group">
+									<label> Người Đại Diện</label> <input type="text"
+										placeholder="Tên Người Đại Diện Công Ty" class="form-control"
+										name="representative"
+										th:value="${corporateCustomer.representative}">
+								</div>
+
+								<div class="form-group">
+									<label> Công Ty Mẹ</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block"
+												title="Chọn Công Ty Mẹ" data-size="7" name="idParentCompany">
+												<option th:if="${parentCompany} != null"
+													th:value="${parentCompany.idCustomer}" th:text="${parentCompany.nameCustomer}" selected="selected"></option>
+												<option th:if="${nameParentCompany} == null"
+													selected="selected" value="">-----</option>
+												<option th:each="parentCompany : ${listParentCompany}" th:value="${parentCompany.idCustomer}" th:text="${parentCompany.nameCustomer}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label> Mã Số Doanh Nghiệp</label> <input type="number"
+										placeholder="Nhập Mã Doanh Nghiệp" class="form-control"
+										name="enterpriseIdentificationNumber"
+										id="enterpriseIdentificationNumber"
+										th:value="${corporateCustomer.enterpriseIdentificationNumber}">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-enterpriseIdentificationNumber">
+									<span><b>Không Được Để Trống Mã Số Doanh Nghiệp !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Loại Khách Hàng</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block"
+												title="Chọn Loại Khách Hàng" data-size="7"
+												name="classificationCustomer" id="classificationCustomer">
+												<option
+													th:value="${selectedClassificationCustomer.idClassificationCustomer}"
+													th:text="${selectedClassificationCustomer.nameClassificationCustomer}"
+													selected="selected">
+												<option value="id"
+													th:each="classification : ${listClassificationCustomer}"
+													th:text="${classification.nameClassificationCustomer}"
+													th:value="${classification.idClassificationCustomer}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-classificationCustomer">
+									<span><b>Không Được Để Trống Phân Loại Khách Hàng !</b></span>
+								</div>
+
+
+
+
+								<div class="form-group">
+									<label> Lĩnh Vực Công Ty</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block" title="Chọn Lĩnh Vực"
+												data-size="7" name="industryField" id="industryField">
+												<option th:value="${selectedIndustryField.idIndustryField}" th:text="${selectedIndustryField.nameIndustryField}" selected="selected"></option>
+												<option th:each="industryField : ${listIndusList}" th:value="${industryField.idIndustryField}" th:text="${industryField.nameIndustryField}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-industryField">
+									<span><b>Không Được Để Trống Lĩnh Vực Công Ty !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Ngày Đăng Ký</label> <input type="date"
+										placeholder="Nhập Ngày Sinh" class="form-control"
+										name="registrationDate" id="registrationDate"
+										th:value="${corporateCustomer.registrationDate}">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-registrationDate">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="check-registrationDate">
+									<span><b>Ngày Đăng Ký Không Hợp Lệ !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label> SĐT</label> <input type="number" placeholder="Nhập Sđt"
+										class="form-control" name="phoneNumber" id="phoneNumber"
+										th:value="${corporateCustomer.phoneNumber}">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-phoneNumber">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-check-phoneNumber">
+									<span><b>SĐT Không Hợp Lệ !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Trạng Thái Khách Hàng</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block"
+												title="Chọn Trạng Thái Khách Hàng" data-size="7"
+												name="idCustomerStatus" id="idCustomerStatus">
+												<option th:if="${corporateCustomer.idCustomerStatus} == 1"
+													selected="selected" th:value="1">Đã Hoạt Động</option>
+												<option th:if="${corporateCustomer.idCustomerStatus} == 0"
+													selected="selected" th:value="0">Chưa Hoạt Động</option>
+												<option th:value="0">Chưa Hoạt Động</option>
+												<option th:value="1">Đã Hoạt Động</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-idCustomerStatus">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Quy Mô Công Ty</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block"
+												title="Chọn Quy Mô Công Ty" data-size="7"
+												name="companyScale" id="companyScale">
+												<option th:if="${corporateCustomer.companyScale} == 1"
+													selected="selected" value="1">Nhỏ</option>
+												<option th:if="${corporateCustomer.companyScale} == 2"
+													selected="selected" value="2">Vừa</option>
+												<option th:if="${corporateCustomer.companyScale} == 3"
+													selected="selected" value="3">Lớn</option>
+												<option value="1">Nhỏ</option>
+												<option value="2">Vừa</option>
+												<option value="3">Lớn</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-companyScale">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4">
+										<button type="submit"
+											class="btn btn-fill btn-info position-button-insert-department-form"
+											onclick="return update()">Xác Nhận</button>
+									</div>
+									<div class="col-sm-4"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- end card -->
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

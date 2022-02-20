@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<link href="../assets/css/department.css" rel="stylesheet" />
+<script src="../assets/js/department.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<form method="post" th:action="@{'/FPT/update-attached-file-contract-process'}" enctype="multipart/form-data">
+							<div class="card-header">
+								<h4 class="card-title">Cập Nhật File Đính Kèm Hợp Đồng</h4>
+							</div>
+							<div class="card-content">
+								<input type="hidden" name="idContract" th:value="${contract.idContract}">
+								<div class="form-group">
+									<label> File Đính Kèm Cũ</label> <input type="text"
+										class="form-control" th:value="${contract.attachedFile}" readonly="readonly">
+								</div>
+								<div class="form-group">
+									<label> File Đính Kèm</label> <input type="file"
+										class="form-control" name="attachedFile"
+										accept=".doc,.docx,.txt,.pdf" required="required">
+								</div>
+								
+								<button type="submit"
+									class="btn btn-fill btn-info position-button-insert-department-form">Xác
+									Nhận</button>
+							</div>
+						</form>
+					</div>
+					<!-- end card -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

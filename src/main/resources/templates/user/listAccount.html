@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<link href="../assets/css/department.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh Sách Tài Khoản Nhân Viên</h4>
+						</div>
+						<div class="card-content">
+							<form class="navbar-form navbar-left navbar-search-form"
+								role="search" th:action="@{'/FPT/search-account'}" method="get">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-search"></i></span>
+									<input type="text" class="form-control" placeholder="Tìm Kiếm"
+										name="search">
+								</div>
+							</form>
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Email</th>
+									<th data-field="name" class="text-center">Họ Tên</th>
+									<th data-field="name" class="text-center">Phòng Ban</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="account : ${listAccount}">
+									<tr>
+										<td class="text-center" th:text="${account.getId_tai_khoan()}"></td>
+										<td class="text-center" th:text="${account.getEmail()}"></td>
+										<td class="text-center" th:text="${account.getTen_user()}"></td>
+										<td class="text-center" th:text="${account.getTen_phong_ban()}"></td>
+										<td class="text-center"><a
+											th:href="@{'/FPT/display-information-user?id_user='+${account.getId_user()}}"
+											class="btn btn-info"> Xem </a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

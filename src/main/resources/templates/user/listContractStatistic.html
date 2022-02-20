@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+
+		<div class="container-fluid">
+
+			<div class="row">
+				<br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh Sách Hợp Đồng</h4>
+						</div>
+						<div class="card-content">
+
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Hợp Đồng</th>
+									<th data-field="name" class="text-center">Số Hợp Đồng</th>
+									<th data-field="name" class="text-center">Tên Công Ty</th>
+									<th data-field="name" class="text-center">Ngày Ký</th>
+									<th data-field="name" class="text-center">Ngày Hết Hạn</th>
+									<th data-field="name" class="text-center">Loại Hợp Đồng</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="contract : ${listContract}">
+									<tr>
+										<td class="text-center" th:text="${contract.getId_hop_dong()}"></td>
+										<td class="text-center"
+											th:text="${contract.getTen_hop_dong()}"></td>
+										<td class="text-center"
+											th:text="${contract.getSo_hop_dong()}"></td>
+										<td class="text-center" th:text="${contract.getTen_khach_hang()}"></td>
+										<td class="text-center"
+											th:text="${contract.getNgay_ky()}"></td>
+										<td class="text-center"
+											th:text="${contract.getNgay_het_han()}"></td>
+										<td class="text-center"
+											th:text="${contract.getTen_loai_hop_dong()}"></td>
+
+										<td class="text-center"><a
+											th:href="@{'/FPT/display-contract-information?id_contract='+${contract.getId_hop_dong()}}"
+											rel="tooltip" title="Thông Tin Hợp Đồng"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-user"></i>
+										</a>
+										
+										<a
+											th:href="@{'/FPT/open-contract?id_contract='+${contract.getId_hop_dong()}}"
+											rel="tooltip" title="Khôi Phục"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-reload"></i>
+										</a>
+										
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

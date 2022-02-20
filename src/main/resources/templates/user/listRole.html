@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<link href="../assets/css/department.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<a th:href="@{'/FPT/insert-role'}"
+					class="btn btn-info btn-fill btn-wd position">Thêm Quyền</a> <br>
+				<br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh Sách Quyền</h4>
+						</div>
+						<div class="card-content">
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Quyền</th>
+									<th data-field="name" class="text-center">Mã Quyền</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="role : ${listRole}">
+									<tr>
+										<td class="text-center" th:text="${role.idRole}"></td>
+										<td class="text-center" th:text="${role.nameRole}"></td>
+										<td class="text-center" th:text="${role.codeRole}"></td>
+										<td class="text-center"> <a th:href="@{'/FPT/update-role?id_role='+${role.idRole}}"
+											class="btn btn-secondary"> Sửa
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

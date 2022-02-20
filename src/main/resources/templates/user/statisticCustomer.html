@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/classification-customer.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+	                        <div class="card">
+	                            <div class="card-header">
+	                                <h4 class="card-title">Khách Hàng Cá Nhân</h4>
+	                            </div>
+	                            <div class="card-content table-responsive table-full-width">
+	                                <table class="table">
+	                                    <thead>
+	                                        <tr>
+	                                            <th class="text-center"></th>
+	                                            <th class="text-center"></th>
+	                                            <th class="text-center">Số Lượng</th>
+	                                            <th class="text-center">Chức Năng</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4>Tổng Khách Hàng Cá Nhân</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalPersonalCustomer.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-personal-customer-statistic'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                         <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4> Khách Hàng Cá Nhân Chưa Hoạt Động</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalPersonalCustomerHasNotActived.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-personal-customer-has-not-actived'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                         <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4> Khách Hàng Cá Nhân Đã Hoạt Động</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalPersonalCustomerActived.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-personal-customer-actived'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                    
+	                                         <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4> Khách Hàng Cá Nhân Đã Xóa</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalPersonalCustomerLocked.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-personal-customer-locked'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                        </div>
+	                    </div>
+			</div>
+			
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+	                        <div class="card">
+	                            <div class="card-header">
+	                                <h4 class="card-title">Khách Hàng Tổ Chức</h4>
+	                            </div>
+	                            <div class="card-content table-responsive table-full-width">
+	                                <table class="table">
+	                                    <thead>
+	                                        <tr>
+	                                            <th class="text-center"></th>
+	                                            <th class="text-center"></th>
+	                                            <th class="text-center">Số Lượng</th>
+	                                            <th class="text-center">Chức Năng</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4>Tổng Khách Hàng Tổ Chức</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalCorporateCustomer.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-corporate-customer'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                         <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4> Khách Hàng Tổ Chức Chưa Hoạt Động</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalCorporateCustomerHasNotActived.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-corporate-customer-has-not-actived'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                         <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4> Khách Hàng Tổ Chức Đã Hoạt Động</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalCorporateCustomerActived.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-corporate-customer-actived'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                    
+	                                         <tr>
+	                                            <td class="text-center"></td>
+	                                            <td class="text-center"><h4> Khách Hàng Tổ Chức Đã Xóa</h4></td>
+	                                            <td class="text-center"><h4 th:text="${totalCorporateCustomerLocked.getSoluong()}"></h4></td>
+	                                            <td class="text-center">
+	                                               <h4><a th:href="@{'/FPT/all-corporate-customer-locked'}" class="btn btn-info">Chi Tiết</a></h4>
+	                                            </td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                        </div>
+	                    </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

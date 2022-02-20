@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<style type="text/css">
+.logo-image-customer {
+	width: 120px;
+	height: 10px;
+	border: 1px solid #ECCBB0;
+}
+</style>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-header">
+									<h3 class="card-title">Lọc Và Lựa Chọn Tìm Kiếm</h3>
+								</div>
+							</div>
+							<div class="col-md-4"></div>
+							<div class="col-md-2"></div>
+						</div>
+
+						<div class="card-content">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="card-header">
+										<h6>Quy Mô</h6>
+									</div>
+									<div>
+										<div class="dropdown">
+											<button href="#" class="btn btn-block dropdown-toggle"
+												data-toggle="dropdown">
+												----- <b class="caret"></b>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a
+													th:href="@{'/FPT/advanced-search-corporate-customer-by-company-scale?id_company_scale=1'}">Nhỏ</a></li>
+												<li><a
+													th:href="@{'/FPT/advanced-search-corporate-customer-by-company-scale?id_company_scale=2'}">Vừa</a></li>
+												<li><a
+													th:href="@{'/FPT/advanced-search-corporate-customer-by-company-scale?id_company_scale=3'}">To</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3">
+									<div class="card-header">
+										<h6>Lĩnh Vực</h6>
+									</div>
+									<div>
+										<div class="dropdown">
+											<button href="#" class="btn btn-block dropdown-toggle"
+												data-toggle="dropdown">
+												----- <b class="caret"></b>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a th:each="industryField:${listIndustryField}"
+													th:href="@{'/FPT/advanced-search-corporate-customer-by-industry-field?id_industry_field='+${industryField.idIndustryField}}"
+													th:text="${industryField.nameIndustryField}"></a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3">
+									<div class="card-header">
+										<h6>Trạng Thái Khách Hàng</h6>
+									</div>
+									<div>
+										<div class="dropdown">
+											<button href="#" class="btn btn-block dropdown-toggle"
+												data-toggle="dropdown">
+												----- <b class="caret"></b>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a
+													th:href="@{'/FPT/advanced-search-corporate-customer-by-customer-status?id_customer_status=1'}">Đã
+														Hoạt Động</a></li>
+												<li><a
+													th:href="@{'/FPT/advanced-search-corporate-customer-by-customer-status?id_customer_status=0'}">Chưa
+														Hoạt Động</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3"></div>
+							</div>
+							<div class="row">
+								<form
+									th:action="@{'/FPT/advanced-search-corporate-customer-by-enterprise-indentification-number'}"
+									method="get"></form>
+
+								<div class="col-md-3">
+									<div class="card-header">
+										<h6>Nhập Mã Số Doanh Nghiệp</h6>
+									</div>
+									<div class="col-md-12">
+										<input type="number" placeholder="Nhập Mã Số Doanh Nghiệp"
+											class="form-control" name="enterpriseIdentificationNumber">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="card-header">
+										<h6>Nút Chức Năng</h6>
+									</div>
+									<div class="col-md-12">
+										<button class="btn btn-primary btn-fill btn-wd" type="submit">Tìm
+											Kiếm</button>
+									</div>
+								</div>
+								<div class="col-md-3"></div>
+								<div class="col-md-3"></div>
+							</div>
+						</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<div class="row">
+				<br>
+
+
+				<div class="col-md-12">
+					<div class="card">
+						<br>
+						<div class="row">
+							<div class="row">
+								<div class="col-md-9"></div>
+								
+								<div class="col-md-3">
+									<a th:href="@{'/FPT/insert-corporate-customer'}"
+										class="btn btn-info btn-fill btn-wd ">Thêm Khách Hàng</a>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8">
+								<div class="card-header">
+									<h4 class="card-title">Danh Sách Khách Hàng Doanh
+										Nghiệp-Tổ Chức</h4>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="card-content">
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Khách Hàng</th>
+									<th data-field="name" class="text-center">Quy Mô</th>
+									<th data-field="name" class="text-center">Mã Số Doanh
+										Nghiệp</th>
+									<th data-field="name" class="text-center">Logo</th>
+									<th data-field="name" class="text-center">Trạng Thái</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="corporateCustomer : ${listCorporateCustomer}">
+									<tr>
+										<td class="text-center"
+											th:text="${corporateCustomer.idCustomer}"></td>
+										<td class="text-center"
+											th:text="${corporateCustomer.nameCustomer}"></td>
+										<td class="text-center"
+											th:if="${corporateCustomer.companyScale} == 1">Nhỏ</td>
+										<td class="text-center"
+											th:if="${corporateCustomer.companyScale} == 2">Vừa</td>
+										<td class="text-center"
+											th:if="${corporateCustomer.companyScale} == 3">Lớn</td>
+										<td class="text-center"
+											th:text="${corporateCustomer.enterpriseIdentificationNumber}"></td>
+										<td class="text-center"><img
+											th:src="@{${corporateCustomer.logoImage}}"
+											class="logo-image-customer"></td>
+										<td class="text-center"
+											th:if="${corporateCustomer.idCustomerStatus} == 1">Đã
+											Hoạt Động</td>
+										<td class="text-center"
+											th:if="${corporateCustomer.idCustomerStatus} == 0">Chưa
+											Hoạt Động</td>
+
+
+										<td class="text-center"><a
+											th:href="@{'/FPT/display-information-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}"
+											rel="tooltip" title="Thông Tin Khách Hàng"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-user"></i>
+										</a> <a
+											th:href="@{'/FPT/update-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}"
+											rel="tooltip" title="Sửa Thông Tin"
+											class="btn btn-success btn-simple btn-xs"> <i
+												class="ti-pencil-alt"></i>
+										</a> <a
+											th:href="@{'/FPT/update-logo-image?id_customer='+${corporateCustomer.idCustomer}}"
+											rel="tooltip" title="Sửa Logo"
+											class="btn btn-success btn-simple btn-xs"> <i
+												class="ti-pencil-alt"></i>
+										</a> <a th:href="@{'/FPT/lock-corporate-customer?id_customer='+${corporateCustomer.idCustomer}}" rel="tooltip" title="Xóa"
+											class="btn btn-danger btn-simple btn-xs"
+											onclick="return alert('Không Hỗ Trợ Chức Năng Xóa Khách Hàng');">
+												<i class="ti-close"></i>
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

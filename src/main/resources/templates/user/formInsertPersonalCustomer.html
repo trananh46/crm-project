@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+
+<script src="../assets/js/personal-customer.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-md-8">
+					<div class="card">
+						<form method="post"
+							th:action="@{'/FPT/insert-personal-customer-process'}">
+							<div class="card-header">
+								<h4 class="card-title">Thêm Khách Hàng Cá Nhân</h4>
+							</div>
+
+							<div class="card-content">
+								<div class="alert alert-danger" th:if="${checkExist == 1}">
+									<span><b> Tên Khách Hàng Và Căn Cước Công Dân Đã Tồn
+											Tại !</b></span>
+								</div>
+								<div class="form-group">
+									<label>Họ Tên</label> <input type="text"
+										placeholder=" Nhập Họ Tên " class="form-control"
+										name="nameCustomer" id="name-customer">
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-name-customer">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-regex-name-customer">
+									<span><b>Không Đúng Định Dạng - Vui Lòng Nhập Lại !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label>Địa Chỉ</label>
+									<textarea rows="5" cols="10" class="form-control"
+										placeholder=" Nhập Địa Chỉ" name="address" id="address"></textarea>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-address">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label>Email</label> <input type="text"
+										placeholder=" Nhập Email" class="form-control" name="email"
+										id="email">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-email">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-regex-email">
+									<span><b>Email Không Hợp Lệ !</b></span>
+								</div>
+
+
+
+								<div class="form-group">
+									<label> Mã Số Thuế</label> <input type="number"
+										placeholder=" Nhập Mã Số Thuế" class="form-control"
+										name="taxIdentificationNumber" id="taxIdentificationNumber">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-taxIdentificationNumber">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label> Giới Tính</label>
+									<div class="row">
+										<div class="col-md-4">
+											<div class="radio">
+												<input type="radio" name="gender" id="gender" value="1"
+													required="required"> <label for="radio1"
+													name="gender"> Nam </label>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="radio">
+												<input type="radio" name="gender" id="gender" value="0"
+													required="required"> <label for="radio1"
+													name="gender"> Nữ </label>
+											</div>
+										</div>
+										<div class="col-md-4"></div>
+									</div>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-gender">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label> Căn Cước Công Dân</label> <input type="number"
+										placeholder=" Nhập Mã Số Căn Cước Công Dân"
+										class="form-control" name="identification" id="identification">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-identification">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+
+
+								<div class="form-group">
+									<label> Quốc Tịch</label> <input type="text"
+										placeholder=" Nhập Quốc Tịch " class="form-control"
+										name="nationality" id="nationality">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-nationality">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-regex-nationality">
+									<span><b>Quốc Gia Không Hợp Lệ !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Nơi Sinh</label> <input type="text"
+										placeholder="Nhập Nơi Sinh (Thành Phố)" class="form-control"
+										name="birthPlace" id="birthPlace">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-birthPlace">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-regex-birthPlace">
+									<span><b>Nơi Sinh Không Hợp Lệ - Vui Lòng Điền Tên
+											Thành Phố !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Sinh Nhật</label> <input type="date"
+										placeholder="Nhập Ngày Sinh" class="form-control"
+										name="birthday" id="birthday">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-birthday">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-check-birthday">
+									<span><b>Sinh Nhật Không Hợp Lệ !</b></span>
+								</div>
+
+								<div class="form-group">
+									<label> Ngày Đăng Ký</label> <input type="date"
+										placeholder="Nhập Ngày Sinh" class="form-control"
+										name="registrationDate" id="registrationDate">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-registrationDate">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-check-registrationDate">
+									<span><b>Ngày Đăng Ký Không Hợp Lệ !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> SĐT</label> <input type="number" placeholder="Nhập Sđt"
+										class="form-control" name="phoneNumber" id="phoneNumber">
+								</div>
+								<div class="alert alert-danger" style="display: none;"
+									id="error-phoneNumber">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-check-phoneNumber">
+									<span><b>SĐT Không Hợp Lệ !</b></span>
+								</div>
+
+
+
+								<div class="form-group">
+									<label> Trạng Thái Khách Hàng</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block"
+												title="Chọn Trạng Thái Khách Hàng" data-size="7"
+												name="idCustomerStatus" id="idCustomerStatus">
+												<option value="0">Chưa Hoạt Động</option>
+												<option value="1">Đã Hoạt Động</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-idCustomerStatus">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+
+
+								<div class="form-group">
+									<label> Loại Khách Hàng</label>
+									<div class="row">
+										<div class="col-sm-12">
+											<select class="selectpicker"
+												data-style="btn btn-danger btn-block"
+												title="Chọn Loại Khách Hàng" data-size="7"
+												name="classificationCustomer" id="classificationCustomer">
+												<option value="id"
+													th:each="classification : ${listClassificationCustomer}"
+													th:text="${classification.nameClassificationCustomer}"
+													th:value="${classification.idClassificationCustomer}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="alert alert-danger" style="display: none;"
+									id="error-classificationCustomer">
+									<span><b>Không Được Để Trống !</b></span>
+								</div>
+								<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4">
+										<button type="submit"
+											class="btn btn-fill btn-info position-button-insert-department-form"
+											onclick="return insert()">Xác Nhận</button>
+									</div>
+									<div class="col-sm-4"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		</div>
+</body>
+</html>

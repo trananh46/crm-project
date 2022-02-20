@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+
+		<div class="container-fluid">
+
+			<div class="row">
+				<br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh Sách Khách Hàng Cá Nhân</h4>
+						</div>
+						<div class="card-content">
+
+							<form class="navbar-form navbar-left navbar-search-form"
+								role="search" th:action="@{'/FPT/search-personal-customer-by-name'}" method="get">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-search"></i></span>
+									<input type="text" class="form-control" placeholder="Tìm Kiếm Theo Tên"
+										name="search">
+								</div>
+							</form>
+
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Khách Hàng</th>
+									<th data-field="name" class="text-center">Sinh Nhật</th>
+									<th data-field="name" class="text-center">Địa Chỉ</th>
+									<th data-field="name" class="text-center">SĐT</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="personalCustomer : ${listPersonalCustomer}">
+									<tr>
+										<td class="text-center"
+											th:text="${personalCustomer.idCustomer}"></td>
+										<td class="text-center"
+											th:text="${personalCustomer.nameCustomer}"></td>
+										<td class="text-center" th:text="${personalCustomer.birthday}"></td>
+										<td class="text-center" th:text="${personalCustomer.address}"></td>
+										<td class="text-center"
+											th:text="${personalCustomer.phoneNumber}"></td>
+										<td class="text-center">
+										
+										<a
+											th:href="@{'/FPT/display-information-personal-customer?id_customer='+${personalCustomer.idCustomer}}"
+											rel="tooltip" title="Thông Tin Khách Hàng"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-user"></i>
+										</a>
+										
+										<a
+											th:href="@{'/FPT/open-personal-customer?id_customer='+${personalCustomer.idCustomer}}"
+											rel="tooltip" title="Khôi Phục"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-reload"></i>
+										</a>
+										
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

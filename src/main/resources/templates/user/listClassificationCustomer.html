@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<script src="../assets/js/classification-customer.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a th:href="@{'/FPT/insert-classification-customer'}"
+						class="btn btn-info btn-fill btn-wd position">Thêm Phân Loại</a>
+				</div>
+			</div>
+			<div class="row">
+
+				<br> <br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Phân Loại Khách Hàng</h4>
+						</div>
+						<div class="card-content">
+
+							<div class="toolbar"></div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Phân Loại
+										Khách Hàng</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody
+									th:each="classificationCustomer : ${listClassificationCustomer}">
+									<tr>
+										<td class="text-center"
+											th:text="${classificationCustomer.idClassificationCustomer}"></td>
+										<td class="text-center"
+											th:text="${classificationCustomer.nameClassificationCustomer}"></td>
+										<td class="text-center">
+											<a th:href="@{'/FPT/update-classification-customer?id_classification_customer='+${classificationCustomer.idClassificationCustomer}}" class="btn btn-secondary">Sửa</a> 
+											
+											
+											<!-- <a th:href="@{'/FPT/delete-classification-customer?id_classification_customer='+${classificationCustomer.idClassificationCustomer}}" class="btn btn-danger"
+											onclick="return confirm('Bạn Có Muốn Xóa Loại Khách Hàng Này Không ? Khách Hàng Thuộc Loại Này Sẽ Không Bị Xóa');">Xóa</a> -->
+												
+											</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

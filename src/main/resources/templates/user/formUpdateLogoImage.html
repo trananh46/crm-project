@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8" />
+<link href="../assets/css/department.css" rel="stylesheet" />
+<script src="../assets/js/department.js"></script>
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<form method="post" th:action="@{'/FPT/update-logo-image-process'}" enctype="multipart/form-data">
+							<div class="card-header">
+								<h4 class="card-title">Cập Nhật Logo</h4>
+							</div>
+							<div class="card-content">
+								<input type="hidden" name="idCustomer" th:value="${idCustomer}">
+								<div class="form-group">
+									<label> Ảnh-Logo</label> <input type="file"
+										class="form-control" name="logoImage"
+										accept="image/png, image/jpeg" required="required">
+								</div>
+								
+								<button type="submit"
+									class="btn btn-fill btn-info position-button-insert-department-form">Xác
+									Nhận</button>
+							</div>
+						</form>
+					</div>
+					<!-- end card -->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
