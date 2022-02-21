@@ -22,7 +22,7 @@ public interface AccountRepository extends JpaRepository<Account, Long>{
 	@Query(value = "select * from tai_khoan where id_user = :idUser",nativeQuery = true)
 	Account findAccountByIdUser(@Param("idUser") Long idUser);
 	
-	@Query(value = "SELECT * FROM tai_khoan WHERE email = :email ",nativeQuery = true)
+	@Query(value = "SELECT * FROM tai_khoan WHERE email = :email AND trang_thai = 1 ",nativeQuery = true)
 	Account findAccountByEmail(@Param("email") String email);
 	
 	@Query(value = "SELECT * FROM tai_khoan WHERE id_tai_khoan = :idAccount",nativeQuery = true)

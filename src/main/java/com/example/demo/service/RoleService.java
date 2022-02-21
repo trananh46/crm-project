@@ -73,4 +73,9 @@ public class RoleService {
 		r.setStatus(status);
 		roleRepository.save(r);
 	}
+	
+	public List<Role> displayListRoleOfUserById(Long idUser){
+		List<Role> listRole = roleRepository.displayListRoleOfUserById(idUser);
+		return listRole;
+	}
 }

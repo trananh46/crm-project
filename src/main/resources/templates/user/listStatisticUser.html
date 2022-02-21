@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	>
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">
+
+		<div class="container-fluid">
+
+
+			<div class="row">
+				<br>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Danh Sách Nhân Viên</h4>
+						</div>
+						<div class="card-content">
+
+							<form class="navbar-form navbar-left navbar-search-form"
+								role="search" th:action="@{'/FPT/search-user-by-name'}"
+								method="get">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-search"></i></span>
+									<input type="text" class="form-control"
+										placeholder="Tìm Kiếm Theo Tên" name="search">
+								</div>
+							</form>
+
+							<div class="toolbar">
+								<!--Here you can write extra buttons/actions for the toolbar-->
+							</div>
+							<table id="bootstrap-table" class="table">
+								<thead>
+									<th data-field="id" class="text-center">STT</th>
+									<th data-field="name" class="text-center">Tên Nhân Viên</th>
+									<th data-field="name" class="text-center">SĐT</th>
+									<th data-field="name" class="text-center">Phòng Ban</th>
+									<th data-field="name" class="text-center">Email</th>
+									<th data-field="actions" class="text-center"
+										data-events="operateEvents" data-formatter="operateFormatter">Chức
+										Năng</th>
+								</thead>
+								<tbody th:each="user : ${listUser}">
+									<tr>
+										<td class="text-center" th:text="${user.getId_user()}"></td>
+										<td class="text-center" th:text="${user.getTen_user()}"></td>
+										<td class="text-center" th:text="${user.getSdt()}"></td>
+										<td class="text-center" th:text="${user.getTen_phong_ban()}"></td>
+										<td class="text-center" th:text="${user.getEmail()}"></td>
+										<td class="text-center">
+										
+											<a 
+											th:href="@{'/FPT/display-information-user?id_user='+${user.getId_user()}}"
+											class="btn btn-info"> Xem </a>
+											
+											 <a 
+											th:href="@{'/FPT/update-user?id_user='+${user.getId_user()}}"
+											class="btn btn-secondary"> Sửa </a>
+											
+											
+											 <a 
+											th:href="@{'/FPT/delete-user?id_user='+${user.getId_user()}}"
+											class="btn btn-danger" th:if="${user.getTrang_thai()} == 1"> Xóa </a>
+											
+											 <a 
+											th:href="@{'/FPT/open-user?id_user='+${user.getId_user()}}"
+											class="btn btn-success" th:if="${user.getTrang_thai()} == 0"> Khôi Phục </a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

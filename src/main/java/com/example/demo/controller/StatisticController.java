@@ -293,7 +293,7 @@ public class StatisticController {
 		
 		List<UserAndInformation> listUser = userService.displayAllUser();
 		model.addAttribute("listUser", listUser);
-		return "user/listUser";
+		return "user/listStatisticUser";
 	}
 	
 	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
@@ -310,7 +310,7 @@ public class StatisticController {
 		
 		List<UserAndInformation> listUser = userService.displayAllUserHasNotHadAccount();
 		model.addAttribute("listUser", listUser);
-		return "user/listUser";
+		return "user/listStatisticUser";
 	}
 	
 	
@@ -329,7 +329,7 @@ public class StatisticController {
 		
 		List<UserAndInformation> listUser = userService.displayAllUserHasAccount();
 		model.addAttribute("listUser", listUser);
-		return "user/listUser";
+		return "user/listStatisticUser";
 	}
 	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-employee-locked")
@@ -345,7 +345,7 @@ public class StatisticController {
 		
 		List<UserAndInformation> listUser = userService.displayAllUserLocked();
 		model.addAttribute("listUser", listUser);
-		return "user/listUser";
+		return "user/listStatisticUser";
 	}
 	
 	
@@ -363,7 +363,7 @@ public class StatisticController {
 		
 		List<UserAndInformation> listUser = userService.displayAllUserByDepartment(nameDepartment);
 		model.addAttribute("listUser", listUser);
-		return "user/listUser";
+		return "user/listStatisticUser";
 	}
 	
 	

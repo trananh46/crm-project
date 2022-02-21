@@ -3,9 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,10 +22,12 @@ import com.example.demo.dto.UserRoleAndInformation;
 import com.example.demo.model.Account;
 import com.example.demo.model.Department;
 import com.example.demo.model.Menu;
+import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.DepartmentService;
 import com.example.demo.service.MenuService;
+import com.example.demo.service.RoleService;
 import com.example.demo.service.UserRoleService;
 import com.example.demo.service.UserService;
 
@@ -50,6 +49,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRoleService userRoleService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-user")
@@ -229,6 +231,12 @@ public class UserController {
 	
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
+	@GetMapping("/open-user")
+	public String openUser(@RequestParam("id_user") Long idUser) {
+		userService.openStatusUser(idUser);
+		return "redirect:/FPT/display-list-user";
+	}
 	
 	@GetMapping("/user-page")
 	public String userPage(@RequestParam("id_user") Long idUser,Model model) {
@@ -250,7 +258,13 @@ public class UserController {
 		Account a = accountService.findAccountByIdUser(idUser);
 		model.addAttribute("account", a);
 		
+		List<Role> listUserRole = roleService.displayListRoleOfUserById(idUser);
+		model.addAttribute("listRole", listUserRole);
+		
 		return "user/userPage";
 	
 	}
+	
+	
+	
 }

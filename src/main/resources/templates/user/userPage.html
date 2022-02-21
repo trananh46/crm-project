@@ -63,7 +63,8 @@
 									<div class="form-group">
 										<label>Ngày Vào Công Ty</label> <input type="date"
 											class="form-control border-input" placeholder="Home Address"
-											th:value="${userInformation.dateEnterCompany}" readonly="readonly">
+											th:value="${userInformation.dateEnterCompany}"
+											readonly="readonly">
 									</div>
 								</div>
 
@@ -79,7 +80,8 @@
 									<div class="form-group">
 										<label>Phòng Ban</label> <input type="text"
 											class="form-control border-input" placeholder="Home Address"
-											th:value="${selectedDepartment.nameDepartment}" readonly="readonly">
+											th:value="${selectedDepartment.nameDepartment}"
+											readonly="readonly">
 									</div>
 								</div>
 
@@ -98,12 +100,31 @@
 											th:value="${account.password}" readonly="readonly">
 									</div>
 								</div>
+
+
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<label> Quyền Của Bạn </label>
+										<div class="row">
+
+											<div class="col-md-12">
+												<select class="form-control"
+													aria-label="Default select example">
+													<option th:each="listRole:${listRole}"
+														th:text="${listRole.nameRole}"></option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 

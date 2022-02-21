@@ -95,6 +95,14 @@ public class UserService {
 		userRepository.save(u);
 	}
 	
+	public void openStatusUser(Long idUser) {
+		User u = userRepository.findUserById(idUser);
+		// open status of user is 0
+		Long status = (long)1;
+		u.setStatus(status);
+		userRepository.save(u);
+	}
+	
 	public void updateStatusOfUserByIdDepartment(Long idDepartment) {
 		userRepository.updateStatusOfUserByIdDepartment(idDepartment);
 	}

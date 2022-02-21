@@ -64,7 +64,7 @@
 										<a
 											th:href="@{'/FPT/open-personal-customer?id_customer='+${personalCustomer.idCustomer}}"
 											rel="tooltip" title="Khôi Phục"
-											class="btn btn-info btn-simple btn-xs" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')"> <i
+											class="btn btn-info btn-simple btn-xs" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')" th:if="${personalCustomer.status} == 0"> <i
 												class="ti-reload"></i>
 										</a>
 										

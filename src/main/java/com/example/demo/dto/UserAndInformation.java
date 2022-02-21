@@ -20,6 +20,8 @@ public interface UserAndInformation {
 	
 	String getCan_cuoc_cong_dan();
 	
+	Long getTrang_thai();
+	
 	String getTen_phong_ban();
 	
 }
