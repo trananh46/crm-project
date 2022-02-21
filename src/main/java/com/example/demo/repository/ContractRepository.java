@@ -38,7 +38,7 @@ public interface ContractRepository extends JpaRepository<Contract, Long>{
 	@Query(value = "select h.*,k.ten_khach_hang,k.ma_so_doanh_nghiep,l.ten_loai_hop_dong from hop_dong h inner join khach_hang k on h.id_khach_hang = k.id_khach_hang inner join loai_hop_dong l ON h.id_loai_hop_dong = l.id_loai_hop_dong",nativeQuery = true)
 	List<ContractAndInformationOfCustomer> displayAllContract();
 	
-	@Query(value = "select h.*,k.ten_khach_hang,k.ma_so_doanh_nghiep,l.ten_loai_hop_dong from hop_dong h inner join khach_hang k on h.id_khach_hang = k.id_khach_hang inner join loai_hop_dong l ON h.id_loai_hop_dong = l.id_loai_hop_dong WHERE h.so_hop_dong LIKE %:contractNumber%",nativeQuery = true)
+	@Query(value = "select h.*,k.ten_khach_hang,k.ma_so_doanh_nghiep,l.ten_loai_hop_dong from hop_dong h inner join khach_hang k on h.id_khach_hang = k.id_khach_hang inner join loai_hop_dong l ON h.id_loai_hop_dong = l.id_loai_hop_dong WHERE h.so_hop_dong LIKE %:contractNumber% AND h.trang_thai = 1",nativeQuery = true)
 	List<ContractAndInformationOfCustomer> searchContractByContractNumber(@Param("contractNumber") String contractNumber);
 	
 	@Query(value="select h.*,k.ten_khach_hang,k.ma_so_doanh_nghiep,l.ten_loai_hop_dong from hop_dong h inner join khach_hang k on h.id_khach_hang = k.id_khach_hang inner join loai_hop_dong l ON h.id_loai_hop_dong = l.id_loai_hop_dong WHERE h.id_hop_dong = :idContract",nativeQuery = true)
