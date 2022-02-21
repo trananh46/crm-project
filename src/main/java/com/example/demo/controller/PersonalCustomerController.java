@@ -70,7 +70,7 @@ public class PersonalCustomerController {
 		long a = personalCustomerService.insertPersonalCustomer(c);
 
 		if (a == 0) {
-			return "redirect:/FPT/display-list-personal-customer";
+			return "redirect:/FPT/advanced-search-personal-customer";
 
 		} else {
 			List<Menu> listMenu = menuService.displayListMenu();
