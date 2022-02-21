@@ -61,7 +61,7 @@
 										<a
 											th:href="@{'/FPT/open-contract?id_contract='+${contract.getId_hop_dong()}}"
 											rel="tooltip" title="Khôi Phục"
-											class="btn btn-info btn-simple btn-xs" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')"> <i
+											class="btn btn-info btn-simple btn-xs" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')" th:if="${contract.getTrang_thai()} == 0"> <i
 												class="ti-reload"></i>
 										</a>
 										
