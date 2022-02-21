@@ -50,7 +50,7 @@ public class CorporateCustomerController {
 	@Autowired
 	private UserService userService;
 	
-	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-corporate-customer")
 	public String displayFormInsertCorporateCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -75,7 +75,7 @@ public class CorporateCustomerController {
 		return "user/formInsertCorporateCustomer";
 	}
 
-	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/insert-corporate-customer-process")
 	public String insertCorporateCustomerProcess(@ModelAttribute CustomerDTO c, Model model) throws IOException {
 		long checkExist = corporateCustomerService.insertCorporateCustomer(c);
