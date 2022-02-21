@@ -24,7 +24,7 @@
 						<div class="card-content">
 							<div class="form-group">
 								<div class="alert alert-danger"
-									th:if="${user.status} == 0">
+									th:if="${userInformation.status} == 0">
 									<span><b>Nhân Viên Đã Bị Xóa !</b></span>
 								</div>
 
@@ -32,7 +32,7 @@
 							<div class="form-group">
 								<label>Tên Nhân Viên</label> <input type="text"
 									placeholder=" Nhập Họ Tên Nhân Viên " class="form-control"
-									name="nameUser" id="nameUser" th:value="${user.nameUser}"
+									name="nameUser" id="nameUser" th:value="${userInformation.nameUser}"
 									readonly="readonly">
 							</div>
 
@@ -43,7 +43,7 @@
 								<label>Căn Cước Công Dân</label> <input type="text"
 									placeholder=" Nhập Căn Cước Cân Dân " class="form-control"
 									name="identification" id="identification"
-									th:value="${user.identification}" readonly="readonly">
+									th:value="${userInformation.identification}" readonly="readonly">
 							</div>
 
 
@@ -52,7 +52,7 @@
 							<div class="form-group">
 								<label> Sinh Nhật</label> <input type="date"
 									placeholder="Nhập Ngày Sinh" class="form-control"
-									name="birthday" id="birthday" th:value="${user.birthday}"
+									name="birthday" id="birthday" th:value="${userInformation.birthday}"
 									readonly="readonly">
 							</div>
 
@@ -62,7 +62,7 @@
 								<label> Ngày Vào Công Ty</label> <input type="date"
 									placeholder="Nhập Ngày Sinh" class="form-control"
 									name="dateEnterCompany" id="dateEnterCompany"
-									th:value="${user.dateEnterCompany}" readonly="readonly">
+									th:value="${userInformation.dateEnterCompany}" readonly="readonly">
 							</div>
 
 
@@ -70,7 +70,7 @@
 							<div class="form-group">
 								<label> SĐT</label> <input type="number" placeholder="Nhập Sđt"
 									class="form-control" name="phoneNumber" id="phoneNumber"
-									th:value="${user.phoneNumber}" readonly="readonly">
+									th:value="${userInformation.phoneNumber}" readonly="readonly">
 							</div>
 
 
@@ -78,7 +78,7 @@
 							<div class="form-group">
 								<label>Email</label> <input type="text"
 									placeholder=" Nhập Email" class="form-control" name="email"
-									id="email" th:value="${user.email}" readonly="readonly">
+									id="email" th:value="${userInformation.email}" readonly="readonly">
 							</div>
 
 							<div class="form-group">
@@ -111,7 +111,7 @@
 							</div>
 
 							<div class="form-group">
-								<a th:href="@{'/FPT/insert_account?id_user='+${user.idUser}}"
+								<a th:href="@{'/FPT/insert_account?id_user='+${userInformation.idUser}}"
 									class="btn btn-info btn-fill btn-wd ">Thêm Tài Khoản</a>
 							</div>
 
@@ -184,7 +184,7 @@
 									<div class="col-md-6"></div>
 									<div class="col-md-3">
 										<a
-											th:href="@{'/FPT/insert-user-role?id_user='+${user.idUser}}"
+											th:href="@{'/FPT/insert-user-role?id_user='+${userInformation.idUser}}"
 											class="btn btn-info btn-fill btn-wd position" sec:authorize="hasAnyRole('ROLE_DRT')">Thêm Quyền</a>
 									</div>
 								</div>
@@ -194,7 +194,7 @@
 											<h4 class="card-title">QUYỀN NHÂN VIÊN</h4>
 										</div>
 										<div class="col-md-6">
-											<h4 th:text="${user.nameUser}"></h4>
+											<h4 th:text="${userInformation.nameUser}"></h4>
 										</div>
 										<div class="col-md-2"></div>
 									</div>

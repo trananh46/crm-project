@@ -134,7 +134,7 @@ public class UserController {
 		model.addAttribute("user", u1);
 		
 		User u = userService.findUserById(idUser);	
-		model.addAttribute("user", u);
+		model.addAttribute("userInformation", u);
 		
 		Department d = u.getDepartment();
 		model.addAttribute("selectedDepartment", d);
