@@ -7,7 +7,7 @@
 <link href="../assets/css/department.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="content" layout:fragment="content">
+	<div class="content" layout:fragment="content" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">

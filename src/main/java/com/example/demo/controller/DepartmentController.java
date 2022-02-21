@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,7 @@ public class DepartmentController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list_department")
 	public String displayListDepartment(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -51,7 +53,7 @@ public class DepartmentController {
 		return "user/listDepartment";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/find_department_name")
 	public String findDepartment(@RequestParam("search") String search,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -68,6 +70,7 @@ public class DepartmentController {
 		return "user/listDepartment";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert_department")
 	public String displayFormInsertDepartment(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -82,7 +85,7 @@ public class DepartmentController {
 		return "user/formInsertDepartment";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert_department_process")
 	public String insertDepartmentProcess(@RequestParam("name_department") String nameDepartment,Model model) {
 		int i = departmentService.insertDepartment(nameDepartment);
@@ -102,6 +105,7 @@ public class DepartmentController {
 		return "redirect:/FPT/list_department";
 	}	
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update_department")
 	public String displayFormUpdateDepartment(@RequestParam("id_department") Long idDepartment,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -118,6 +122,7 @@ public class DepartmentController {
 		return "user/formUpdateDepartment";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update_department_process")
 	public String updateDepartmentProcess(@RequestParam("id_department") Long idDepartment,@RequestParam("name_department") String nameDepartment,Model model) {
 		int i = departmentService.checkDepartmentExistAndUpdate(idDepartment, nameDepartment);
@@ -139,12 +144,14 @@ public class DepartmentController {
 		return "redirect:/FPT/list_department";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete_department")
 	public String deleteDepartment(@RequestParam("id_department") Long idDepartment) {
 		departmentService.deleteDepartment(idDepartment);
 		return "redirect:/FPT/list_department";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/list-user-of-department")
 	public String displayListUserOfDepartment(@RequestParam("id_department") Long idDepartment,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

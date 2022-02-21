@@ -13,7 +13,7 @@
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<a th:href="@{'/FPT/form-insert-type-of-contract'}"
-						class="btn btn-info btn-fill btn-wd position">Thêm Loại Hợp
+						class="btn btn-info btn-fill btn-wd position" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Thêm Loại Hợp
 						Đồng</a>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 										<td class="text-center"><a th:href="@{'/FPT/list-contract-by-id-type-of-contract?id_type_of_contract='+${typeOfContract.idTypeOfContract}}" class="btn btn-info">Xem</a>
 											<a
 											th:href="@{'/FPT/update-type-of-contract?id_type_of_contract='+${typeOfContract.idTypeOfContract}}"
-											class="btn btn-secondary">Sửa</a> 
+											class="btn btn-secondary" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">Sửa</a> 
 											
 											<!-- <a
 											th:href="@{'/FPT/delete-type-of-contract?id_type_of_contract='+${typeOfContract.idTypeOfContract}}"

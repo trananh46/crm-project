@@ -8,7 +8,7 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-	<div class="content" layout:fragment="content">
+	<div class="content" layout:fragment="content" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">
 
 		<div class="container-fluid">
 
@@ -17,7 +17,7 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-2">
 					<a th:href="@{'/FPT/insert-user'}"
-						class="btn btn-info btn-fill btn-wd ">Thêm Nhân Viên</a>
+						class="btn btn-info btn-fill btn-wd " >Thêm Nhân Viên</a>
 				</div>
 			</div>
 
@@ -67,12 +67,12 @@
 											th:href="@{'/FPT/display-information-user?id_user='+${user.getId_user()}}"
 											class="btn btn-info"> Xem </a>
 											
-											 <a sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')"
+											 <a 
 											th:href="@{'/FPT/update-user?id_user='+${user.getId_user()}}"
 											class="btn btn-secondary"> Sửa </a>
 											
 											
-											 <a sec:authorize="hasAnyRole('ROLE_DRT')"
+											 <a 
 											th:href="@{'/FPT/delete-user?id_user='+${user.getId_user()}}"
 											class="btn btn-danger"> Xóa </a>
 											

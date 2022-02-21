@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,6 +43,7 @@ public class UserRoleController {
 	@Autowired
 	private MenuService menuService;
 	
+	@Secured({"ROLE_DRT"})
 	@GetMapping("/insert-user-role")
 	public String displayFormInsertUserRole(@RequestParam("id_user") Long idUser,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -62,7 +64,7 @@ public class UserRoleController {
 		return "user/formInsertUserRole";
 
 	}
-	
+	@Secured({"ROLE_DRT"})
 	@GetMapping("/insert-user-role-process")
 	public String insertUserRoleProcess(@ModelAttribute UserRole u,RedirectAttributes redirectAttributes) {
 		User u1 = u.getUser();
@@ -72,7 +74,7 @@ public class UserRoleController {
 		return "redirect:/FPT/display-information-user";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-user-role")
 	public String deleteUserRole(@RequestParam("id_user_role") Long idUserRole,@RequestParam("id_user") Long idUser,RedirectAttributes redirectAttributes) {
 		

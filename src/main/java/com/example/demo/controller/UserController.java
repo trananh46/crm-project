@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,6 +51,7 @@ public class UserController {
 	@Autowired
 	private UserRoleService userRoleService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-user")
 	public String displayFormInsertUser(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -67,7 +69,7 @@ public class UserController {
 		return "user/formInsertUser";
 	
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/insert-user-process")
 	public String insertUserProcess(@ModelAttribute UserDTO u,Model model) {
 		long checkExist = userService.insertUser(u);
@@ -98,7 +100,7 @@ public class UserController {
 		
 		
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-list-user")
 	public String displayListUser(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -117,6 +119,7 @@ public class UserController {
 		
 	}
 	  
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/display-information-user")
 	public String displayInformationUser(@RequestParam("id_user") Long idUser,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -146,6 +149,7 @@ public class UserController {
 	
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-user")
 	public String displayFormUpdateUser(@RequestParam("id_user") Long idUser,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -169,7 +173,7 @@ public class UserController {
 		return "user/formUpdateUser";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-user-process")
 	public String updateUserProcess(UserDTO u,RedirectAttributes redirectAttributes,Model model) {
 		long checkExist = userService.updateUser(u);
@@ -199,6 +203,7 @@ public class UserController {
 		}
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/search-user-by-name")
 	public String searchUserByName(@RequestParam("search") String search,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -216,12 +221,14 @@ public class UserController {
 		return "user/listUser";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-user")
 	public String deleteUser(@RequestParam("id_user") Long idUser) {
 		userService.lockStatusUser(idUser);
 		return "redirect:/FPT/display-list-user";
 	
 	}
+	
 	
 	@GetMapping("/user-page")
 	public String userPage(@RequestParam("id_user") Long idUser,Model model) {

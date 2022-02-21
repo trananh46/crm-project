@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,7 @@ public class RoleController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/role")
 	public String displayListRole(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -50,7 +52,7 @@ public class RoleController {
 		model.addAttribute("listRole", listRole);
 		return "user/listRole";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-role")
 	public String displayFormInsertRole(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -65,7 +67,7 @@ public class RoleController {
 		return "user/formInsertRole";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-role-process")
 	public String insertRoleProcess(@ModelAttribute Role r,Model model) {
 		
@@ -88,7 +90,7 @@ public class RoleController {
 		}
 		
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-role")
 	public String updateRole(@RequestParam("id_role") Long idRole,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -104,7 +106,7 @@ public class RoleController {
 		model.addAttribute("role", r);
 		return "user/formUpdateRole";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-role-process")
 	public String updateRoleProcess(@ModelAttribute Role r,Model model) {
 		long checkExist = roleService.updateRole(r);
@@ -125,7 +127,7 @@ public class RoleController {
 		}
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-role")
 	public String deleteRole(@RequestParam("id_role") Long idRole) {
 		roleService.deleteRole(idRole);

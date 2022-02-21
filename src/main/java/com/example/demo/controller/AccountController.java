@@ -37,7 +37,7 @@ public class AccountController {
 	@Autowired
 	private UserService userService;
 	
-	@Secured({"ROLE_DRT","ROLE_MNG"})
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/account_employee")
 	public String displayListAccount(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -54,6 +54,7 @@ public class AccountController {
 		return "user/listAccount";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert_account")
 	public String displayFormInsertAccount(@RequestParam("id_user") Long idUser, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -69,6 +70,7 @@ public class AccountController {
 		return "user/formInsertAccount";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/insert_account_process")
 	public String insertAccount(@ModelAttribute Account account, RedirectAttributes redirectAttributes, Model model) {
 
@@ -92,6 +94,7 @@ public class AccountController {
 		}
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/lock-account")
 	public String lockAccount(@RequestParam("id_account") Long idAccount, RedirectAttributes redirectAttributes) {
 		accountService.lockAccount(idAccount);
@@ -101,6 +104,7 @@ public class AccountController {
 		return "redirect:/FPT/display-information-user";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/open-account")
 	public String openAccount(@RequestParam("id_account") Long idAccount, RedirectAttributes redirectAttributes) {
 		accountService.openAccount(idAccount);
@@ -110,6 +114,7 @@ public class AccountController {
 		return "redirect:/FPT/display-information-user";
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-account")
 	public String updatePasswordAccount(@RequestParam("id_account") Long idAccount, Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -127,6 +132,7 @@ public class AccountController {
 
 	}
 
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-account-process")
 	public String updatePasswordAccount(Account a, RedirectAttributes redirectAttributes) {
 		accountService.updateAccount(a);
@@ -134,6 +140,7 @@ public class AccountController {
 		return "redirect:/FPT/display-information-user";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/search-account")
 	public String searchAccountByEmail(@RequestParam("search") String search,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

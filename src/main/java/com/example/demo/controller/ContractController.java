@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,6 +52,7 @@ public class ContractController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-contract")
 	public String displayFormInsertContract(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -71,7 +73,7 @@ public class ContractController {
 		
 		return "user/formInsertContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/insert-contract-process")
 	public String inserContract(@ModelAttribute ContractDTO c,Model model) throws IOException {
 		
@@ -94,6 +96,7 @@ public class ContractController {
 		}
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-contract")
 	public String displayListContract(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -110,6 +113,7 @@ public class ContractController {
 		return "user/listContract";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-contract-by-id-customer")
 	public String displayListContractByIdCustomer(@RequestParam("id_customer") Long idCustomer,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -125,7 +129,7 @@ public class ContractController {
 		model.addAttribute("listContract", listContracts);
 		return "user/listContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/search-contract-by-contract-number")
 	public String searchContractByContractNumber(@Param("search") String search,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -141,7 +145,7 @@ public class ContractController {
 		model.addAttribute("listContract", listContracts);
 		return "user/listContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-contract-information")
 	public String displayContractInformation(@RequestParam("id_contract") Long idContract,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -157,7 +161,7 @@ public class ContractController {
 		model.addAttribute("contract", contract);
 		return "user/informationContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-contract")
 	public String displayFormUpdateContract(@RequestParam("id_contract") Long idContract,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -181,7 +185,7 @@ public class ContractController {
 		
 		return "user/formUpdateContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-contract-process")
 	public String updateContractProcess(@ModelAttribute ContractDTO c,RedirectAttributes redirectAttributes,Model model) {
 		
@@ -199,7 +203,7 @@ public class ContractController {
 		}
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-contract-error")
 	public String displayFormUpdateContractError(@RequestParam("id_contract") Long idContract,@RequestParam("checkExist") Long checkExist,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -224,7 +228,7 @@ public class ContractController {
 		
 		return "user/formUpdateContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-attached-file-contract")
 	public String displayFormUpdateAttachedFile(@RequestParam("id_contract") Long idContract,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -241,7 +245,7 @@ public class ContractController {
 		model.addAttribute("contract", c);
 		return "user/formUpdateAttachedFileContract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@PostMapping("/update-attached-file-contract-process")
 	public String displayFormUpdateAttachedFileProcess(@ModelAttribute ContractDTO c,RedirectAttributes redirectAttributes) throws IOException {
 		contractService.updateAttachedFileContract(c);
@@ -249,13 +253,13 @@ public class ContractController {
 		redirectAttributes.addAttribute("id_contract",c.getIdContract());
 		return "redirect:/FPT/display-contract-information";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-contract")
 	public String deleteContract(@RequestParam("id_contract") Long idContract) {
 		contractService.deleteContractById(idContract);
 		return "redirect:/FPT/list-contract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/open-contract")
 	public String openContract(@RequestParam("id_contract") Long idContract) {
 		contractService.openContractById(idContract);

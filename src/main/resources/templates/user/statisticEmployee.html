@@ -7,7 +7,7 @@
 <script src="../assets/js/classification-customer.js"></script>
 </head>
 <body>
-	<div class="content" layout:fragment="content">
+	<div class="content" layout:fragment="content" sec:authorize="hasAnyRole('ROLE_DRT','ROLE_MNG')">
 		<div class="container-fluid">
 
 			<div class="row">

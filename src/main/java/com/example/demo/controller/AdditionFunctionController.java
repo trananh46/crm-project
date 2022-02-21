@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,6 +41,8 @@ public class AdditionFunctionController {
 	@Autowired
 	private ContractService contractService;
 	
+	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-all-personal-deleted")
 	public String displayAllPersonalCustomerDeleted(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -55,7 +58,7 @@ public class AdditionFunctionController {
 		model.addAttribute("listPersonalCustomer", listPersonalCustomer);
 		return "user/listPersonalCustomer";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-all-corporate-customer-deleted")
 	public String displayAllCorporateCustomerDeleted(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -72,7 +75,7 @@ public class AdditionFunctionController {
 				
 		return "user/listCorporateCustomer";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/display-all-contract-deleted")
 	public String displayAllContractDeleted(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();

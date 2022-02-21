@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -56,6 +57,7 @@ public class StatisticController {
 	 * @return
 	 */
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-customer")
 	public String statisticCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -96,6 +98,7 @@ public class StatisticController {
 		return "user/statisticCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-personal-customer-statistic")
 	public String displayAllPersonalCustomerStatistic(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -112,6 +115,7 @@ public class StatisticController {
 		return "user/listPersonalCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-personal-customer-has-not-actived")
 	public String displayAllPersonalCustomerHasNotActived(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -128,6 +132,7 @@ public class StatisticController {
 		return "user/listPersonalCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-personal-customer-actived")
 	public String displayAllPersonalCustomerActived(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -144,6 +149,7 @@ public class StatisticController {
 		return "user/listPersonalCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-personal-customer-locked")
 	public String displayAllPersonalCustomerLocked(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -160,6 +166,7 @@ public class StatisticController {
 		return "user/listPersonalCustomer";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-corporate-customer")
 	public String displayAllCorporateCustomer(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -177,7 +184,7 @@ public class StatisticController {
 		return "user/listCorporateCustomer";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-corporate-customer-has-not-actived")
 	public String displayAllCorporateCustomerHasNotActived(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -211,7 +218,7 @@ public class StatisticController {
 				
 		return "user/listCorporateCustomer";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-corporate-customer-locked")
 	public String displayAllCorporateCustomerLocked(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -238,7 +245,7 @@ public class StatisticController {
 	/**
 	 * Statistic of Employee
 	 */
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-employee")
 	public String statisticEmployee(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -272,7 +279,7 @@ public class StatisticController {
 		return "user/statisticEmployee";
 		
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-employee")
 	public String displayAllEmployee(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -289,7 +296,7 @@ public class StatisticController {
 		return "user/listUser";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-employee-has-not-had-account")
 	public String displayAllEmployeeHasNotHadAccount(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -308,7 +315,7 @@ public class StatisticController {
 	
 	
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-employee-has-account")
 	public String displayAllEmployeeHasAccount(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -324,7 +331,7 @@ public class StatisticController {
 		model.addAttribute("listUser", listUser);
 		return "user/listUser";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-employee-locked")
 	public String displayAllEmployeeLoked(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -342,7 +349,7 @@ public class StatisticController {
 	}
 	
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/all-employee-by-department")
 	public String displayAllEmployeeByDepartment(@RequestParam("name_department") String nameDepartment,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -369,7 +376,7 @@ public class StatisticController {
 	 * Statistic of contract
 	 */
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-of-contract")
 	public String statisticContract(Model model) {	
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -396,7 +403,7 @@ public class StatisticController {
 		return "user/statisticContract";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-all-contract")
 	public String displayAllContractStatistic(Model model) {	
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -413,7 +420,7 @@ public class StatisticController {
 		return "user/listContractStatistic";
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-all-contract-short-term-time")
 	public String displayAllContractStatisticShortTermTime(Model model) {	
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -429,7 +436,7 @@ public class StatisticController {
 		model.addAttribute("listContract", listContract);
 		return "user/listContractStatistic";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-all-contract-long-term-time")
 	public String displayAllContractStatisticLongTermTime(Model model) {	
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -445,7 +452,7 @@ public class StatisticController {
 		model.addAttribute("listContract", listContract);
 		return "user/listContractStatistic";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/statistic-all-contract-locked")
 	public String displayAllContractStatisticLocked(Model model) {	
 		List<Menu> listMenu = menuService.displayListMenu();

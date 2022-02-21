@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,7 @@ public class TypeOfContractController {
 	@Autowired
 	private UserService userService;
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/form-insert-type-of-contract")
 	public String displayFormInsertTypeOfContract(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -49,6 +51,7 @@ public class TypeOfContractController {
 		return "user/formInsertTypeOfContract";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/insert-process")
 	public String insertTypeOfContract(@ModelAttribute TypeOfContract t,Model model) {
 
@@ -70,7 +73,7 @@ public class TypeOfContractController {
 		}
 	}
 	
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-type-of-contract")
 	public String listTypeOfContract(Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -87,6 +90,7 @@ public class TypeOfContractController {
 		return "user/listTypeOfContract";
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-type-of-contract")
 	public String displayFormUpdateTypeOfContract(@RequestParam("id_type_of_contract") Long idTypeOfContract,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
@@ -103,7 +107,7 @@ public class TypeOfContractController {
 		return "user/formUpdateTypeOfContract";
 		
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/update-type-of-contract-process")
 	public String updateTypeOfContractProcess(@ModelAttribute TypeOfContract t,Model model) {
 		long checkExist = typeOfContractService.updateTypeOfContract(t);
@@ -124,12 +128,13 @@ public class TypeOfContractController {
 		}	
 	}
 	
+	@Secured({"ROLE_DRT","ROLE_MNG"})
 	@GetMapping("/delete-type-of-contract")
 	public String deleteTypeOfContract(@RequestParam("id_type_of_contract") Long idTypeOfContract) {
 		typeOfContractService.deleteTypeOfContract(idTypeOfContract);
 		return "redirect:/FPT/list-type-of-contract";
 	}
-	
+	@Secured({"ROLE_DRT","ROLE_MNG","ROLE_STF"})
 	@GetMapping("/list-contract-by-id-type-of-contract")
 	public String displayListContractByIdTypeOfContract(@RequestParam("id_type_of_contract") Long idTypeOfContract,Model model) {
 		List<Menu> listMenu = menuService.displayListMenu();
